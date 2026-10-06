@@ -10,15 +10,24 @@ function MemberCard({
   color = "#0ea5e9",
   linkedIn = "#",
   year = "",
+  position = "center center",
 }) {
+  const [imgSrc, setImgSrc] = React.useState(image);
+
+  React.useEffect(() => {
+    setImgSrc(image);
+  }, [image]);
+
   return (
     <div
-      className="relative cursor-pointer select-none w-[180px] h-[180px] rounded-lg overflow-hidden shadow-xl transition-transform duration-300 hover:scale-[1.03]"
+      className="relative cursor-pointer select-none w-[180px] h-[180px] rounded-lg overflow-hidden shadow-xl transition-transform duration-300 hover:scale-[1.03] border-2 border-gray-500/50"
     >
       {/* Background image */}
       <img
-        src={image}
+        src={imgSrc || demoPerson}
+        onError={() => setImgSrc(demoPerson)}
         alt={name}
+        style={{ objectPosition: position }}
         className="absolute inset-0 w-full h-full object-cover"
       />
 
@@ -49,12 +58,12 @@ function MemberCard({
       </a>
 
       {/* Bottom info */}
-      <div className="absolute bottom-0 left-0 right-0 p-1">
+      <div className="absolute bottom-0 left-0 right-0 p-1" style={{ fontFamily: "'Inter', sans-serif" }}>
         <div className="rounded-md bg-black/45 backdrop-blur-sm px-2 py-1 border border-white/10">
-          <h3 className="text-sm font-semibold text-white/95 truncate">
+          <h3 className="text-[12px] font-semibold text-white/95 leading-tight line-clamp-2 tracking-wide">
             {name}
           </h3>
-          <p className="text-[11px] text-white/75 mt-0.5 truncate">
+          <p className="text-[11px] font-bold text-white/75 mt-0.5 truncate tracking-wider uppercase">
             {designation}
           </p>
         </div>

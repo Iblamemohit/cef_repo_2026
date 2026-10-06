@@ -22,6 +22,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-
+graphify-out
 # Backend Configuration
 cef-main-backend/api/config.php
+.vercel
+
+# Obsidian context bridge
+obsidian.md
+.obsidian/

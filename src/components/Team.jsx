@@ -30,6 +30,7 @@ function Team() {
                 designation={item.desg}
                 name={item.name}
                 image={item.img}
+                position={item.position}
                 key={key}
                 linkedIn={item.linkedIn}
               />
@@ -52,6 +53,7 @@ function Team() {
                 designation={item.desg}
                 name={item.name}
                 image={item.img}
+                position={item.position}
                 key={key}
                 linkedIn={item.linkedIn}
               />
@@ -74,6 +76,7 @@ function Team() {
                 designation={item.desg}
                 name={item.name}
                 image={item.img}
+                position={item.position}
                 key={key}
                 linkedIn={item.linkedIn}
               />
@@ -96,6 +99,7 @@ function Team() {
                 designation={item.desg}
                 name={item.name}
                 image={item.img}
+                position={item.position}
                 key={key}
                 linkedIn={item.linkedIn}
               />

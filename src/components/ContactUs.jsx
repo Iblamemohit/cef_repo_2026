@@ -38,7 +38,7 @@ function ContactUs() {
               className={linkBase}
               target="_blank"
               rel="noreferrer"
-              href="https://www.linkedin.com/company/cef-iit-delhi/mycompany/"
+              href="https://www.linkedin.com/company/cef-iit-delhi/"
               aria-label="LinkedIn"
             >
               <img src={linkedin} alt="LinkedIn" width={18} />

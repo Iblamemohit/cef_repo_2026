@@ -309,10 +309,20 @@ export default function FancyNavbar() {
               Join Us
             </a>
             <div className="flex gap-3">
-              <a href="#" className="text-white/70 hover:text-white text-sm">
+              <a
+                href="https://www.instagram.com/cef.iitd/"
+                target="_blank"
+                rel="noreferrer"
+                className="text-white/70 hover:text-white text-sm"
+              >
                 Instagram
               </a>
-              <a href="#" className="text-white/70 hover:text-white text-sm">
+              <a
+                href="https://www.linkedin.com/company/cef-iit-delhi/"
+                target="_blank"
+                rel="noreferrer"
+                className="text-white/70 hover:text-white text-sm"
+              >
                 LinkedIn
               </a>
             </div>
