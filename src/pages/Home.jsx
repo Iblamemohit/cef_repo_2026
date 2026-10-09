@@ -4,92 +4,93 @@ import SectionHeading from "../components/SectionHeading";
 import About from "../components/About";
 import Team from "../components/Team";
 import SpecialCarousel from "../components/SpecialCarousel";
+import Flagship from "../components/Flagship";
 import Alumni from "../components/Alumni";
 import ContactUs from "../components/ContactUs";
 
 export default function Home() {
   const location = useLocation();
 
-  // Scroll to section when arriving at Home with a hash (e.g., /#about)
   useEffect(() => {
     if (!location.hash) return;
     const id = location.hash.replace("#", "");
     const el = document.getElementById(id);
     if (!el) return;
-    // Delay to ensure DOM is ready after navigation
-    const headerOffset = 88; // adjust to match Navbar height + spacer
+    const headerOffset = 80;
     const run = () => {
-      const y =
-        el.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+      const y = el.getBoundingClientRect().top + window.pageYOffset - headerOffset;
       window.scrollTo({ top: y, behavior: "smooth" });
     };
-    // Request next frame for smoother scroll after paint
     const r = requestAnimationFrame(run);
     return () => cancelAnimationFrame(r);
   }, [location]);
-  return (
-    <>
-      {/* content begins immediately under fixed navbar */}
 
-      {/* About Section */}
-      <section
-        id="about"
-        className="container mx-auto px-4 sm:px-6 lg:px-8 py-16"
-      >
+  return (
+    <div className="pt-20">
+      {/* 1. Hero Landing Showcase */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+        <SpecialCarousel name="Landing" arrows={true} />
+      </section>
+
+      {/* 2. About Section */}
+      <section id="about" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <SectionHeading
-          title="About CEF"
-          subtitle="Civil & Environmental Engineering Forum at IIT Delhi — fostering innovation, leadership, and community."
+          badge="ABOUT // CEF IIT DELHI"
+          title="Fostering Infrastructure Excellence"
+          subtitle="The official society of the Department of Civil Engineering at IIT Delhi — advancing innovation, structural mastery, and engineering leadership."
         />
         <About />
       </section>
 
-      {/* Team Section */}
-      <section
-        id="team"
-        className="container mx-auto px-4 sm:px-6 lg:px-8 py-16"
-      >
+      {/* 3. Flagship Conclave Section */}
+      <section id="flagship" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <SectionHeading
-          title="Our Team"
-          subtitle="Meet the faculty, core team, and executives driving CEF forward."
+          badge="ANNUAL FLAGSHIP // AAKAAR"
+          title="The Premier Civil Engineering Conclave"
+          subtitle="Bringing together academia, structural consultants, and students across India for competitions, keynotes, and technical challenges."
+        />
+        <Flagship />
+      </section>
+
+      {/* 4. Events Section */}
+      <section id="events" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <SectionHeading
+          badge="CAMPUS LIFE // EVENTS"
+          title="Events & Annual Calendar"
+          subtitle="From hackathons and bridge-building sprints to speaker panels and departmental celebrations."
+        />
+        <SpecialCarousel name="Events" arrows={true} />
+      </section>
+
+      {/* 5. Team Section */}
+      <section id="team" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <SectionHeading
+          badge="LEADERSHIP // TEAM"
+          title="Faculty & Student Council"
+          subtitle="Meet the faculty advisors, core committee, and student executives steering the forum."
         />
         <Team />
       </section>
 
-      {/* Events Section */}
-      <section
-        id="events"
-        className="container mx-auto px-4 sm:px-6 lg:px-8 py-16"
-      >
+      {/* 6. Alumni Section */}
+      <section id="alumni" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <SectionHeading
-          title="Events"
-          subtitle="Highlights from our latest events, competitions, and guest sessions."
-        />
-        <SpecialCarousel name="Events" />
-      </section>
-
-      {/* Alumni Section */}
-      <section
-        id="alumni"
-        className="container mx-auto px-4 sm:px-6 lg:px-8 py-16"
-      >
-        <SectionHeading
-          title="Alumni"
-          subtitle="Celebrating the journeys of our distinguished alumni."
+          badge="LEGACY // ALUMNI"
+          title="Distinguished Alumni Network"
+          subtitle="Graduates of IIT Delhi Civil Engineering shaping infrastructure, research, and enterprise worldwide."
         />
         <Alumni />
       </section>
 
-      {/* Contact Section */}
-      <section
-        id="contact-us"
-        className="container mx-auto px-4 sm:px-6 lg:px-8 py-16"
-      >
+      {/* 7. Contact Section */}
+      <section id="contact-us" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <SectionHeading
-          title="Get in Touch"
-          subtitle="Reach us on email or social platforms."
+          badge="REACH OUT // CONTACT"
+          title="Connect with the Forum"
+          subtitle="Reach out for partnerships, academic queries, event participation, or departmental collaboration."
         />
         <ContactUs />
       </section>
-    </>
+    </div>
   );
 }

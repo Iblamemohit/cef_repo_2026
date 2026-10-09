@@ -27,6 +27,11 @@ graphify-out
 cef-main-backend/api/config.php
 .vercel
 
+# Python cache
+__pycache__/
+*.pyc
+
 # Obsidian context bridge
 obsidian.md
 .obsidian/
+

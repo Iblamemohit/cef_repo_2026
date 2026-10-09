@@ -4,10 +4,11 @@ import Magazine from "../components/Magazine";
 
 export default function MagazinePage() {
   return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
+    <div className="pt-24 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <SectionHeading
-        title="Magazine"
-        subtitle="Curated stories, insights, and research from the CEF community."
+        badge="DEPARTMENT PUBLICATIONS // JOURNAL"
+        title="CEF Annual Magazine"
+        subtitle="Curating breakthrough student research, interviews with leading civil engineers, and reflections on sustainable infrastructure."
       />
       <Magazine />
     </div>

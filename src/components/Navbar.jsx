@@ -1,334 +1,258 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import logo from "../assets/ceflogo.png";
+import { useTheme } from "../theme";
 
-// Self-contained SVG icon components
+// Self-contained SVG Icons
 const MenuIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    className="h-6 w-6"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-    strokeWidth={2}
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M4 6h16M4 12h16m-7 6h7"
-    />
+  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16m-7 6h7" />
   </svg>
 );
 
 const CrossIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    className="h-6 w-6"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-    strokeWidth={2}
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M6 18L18 6M6 6l12 12"
-    />
+  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
   </svg>
 );
 
-const SearchIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    className="h-5 w-5"
-    viewBox="0 0 20 20"
-    fill="currentColor"
-  >
-    <path
-      fillRule="evenodd"
-      d="M12.9 14.32a8 8 0 111.414-1.414l3.387 3.386a1 1 0 01-1.414 1.415l-3.387-3.387zM8 14a6 6 0 100-12 6 6 0 000 12z"
-      clipRule="evenodd"
-    />
+const SunIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
   </svg>
 );
 
-export default function FancyNavbar() {
+const MoonIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+    <path strokeLinecap="round" strokeLinejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+  </svg>
+);
+
+export default function Navbar() {
+  const { isDark, toggleTheme } = useTheme();
   const menuItems = [
-    "About",
-    "Team",
-    "Events",
-    "Competitions",
-    "Guest Sessions",
-    "Magazine",
-    "Study Material",
-    "Alumni",
-    "Contact Us",
+    { label: "About", id: "about" },
+    { label: "Team", id: "team" },
+    { label: "Events", id: "events" },
+    { label: "Competitions", id: "competitions", isPage: true },
+    { label: "Guest Sessions", id: "guest-sessions", isPage: true },
+    { label: "Magazine", id: "magazine", isPage: true },
+    { label: "Study Material", id: "study-material", isPage: true },
+    { label: "Alumni", id: "alumni" },
+    { label: "Contact", id: "contact-us" },
   ];
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [active, setActive] = useState(menuItems[0]);
+  const [active, setActive] = useState("about");
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => setScrolled(window.scrollY > 30);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // prevent background scroll when mobile menu open
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? "hidden" : "auto";
     return () => (document.body.style.overflow = "auto");
   }, [isMenuOpen]);
 
-  // Keep active underline in sync with URL path/hash
+  // Keep active item in sync with path and hash
   useEffect(() => {
-    const labelFromId = (id) => {
-      const map = {
-        about: "About",
-        team: "Team",
-        events: "Events",
-        alumni: "Alumni",
-        "contact-us": "Contact Us",
-        competitions: "Competitions",
-        "guest-sessions": "Guest Sessions",
-        magazine: "Magazine",
-        "study-material": "Study Material",
-      };
-      return map[id] || "About";
-    };
-
     if (location.pathname === "/") {
       if (location.hash) {
-        const id = location.hash.replace("#", "");
-        setActive(labelFromId(id));
+        setActive(location.hash.replace("#", ""));
       } else {
-        setActive("About");
+        setActive("about");
       }
     } else {
-      const id = location.pathname.replace(/^\//, "");
-      setActive(labelFromId(id));
+      setActive(location.pathname.replace(/^\//, ""));
     }
   }, [location.pathname, location.hash]);
 
-  // Smooth scroll helper for on-page sections (with header offset)
   const scrollToSection = (id) => {
     const el = document.getElementById(id);
     if (!el) return;
-    const headerOffset = 88; // ~h-20 spacer + navbar height
-    const y =
-      el.getBoundingClientRect().top + window.pageYOffset - headerOffset;
+    const headerOffset = 80;
+    const y = el.getBoundingClientRect().top + window.pageYOffset - headerOffset;
     window.scrollTo({ top: y, behavior: "smooth" });
   };
 
-  const handleSamePageClick = (e, item, id) => {
-    // If we're already on Home, do custom smooth scroll and keep URL hash in sync
-    if (location.pathname === "/") {
+  const handleNavClick = (e, item) => {
+    if (!item.isPage && location.pathname === "/") {
       e.preventDefault();
-      setActive(item);
-      scrollToSection(id);
-      // Update hash without reloading
-      window.history.pushState(null, "", `/#${id}`);
-      // Close mobile menu if open
+      setActive(item.id);
+      scrollToSection(item.id);
+      window.history.pushState(null, "", `/#${item.id}`);
       if (isMenuOpen) setIsMenuOpen(false);
+    } else if (isMenuOpen) {
+      setIsMenuOpen(false);
     }
   };
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300 ease-in-out px-4 sm:px-6 lg:px-8 ${
+      className={`fixed top-0 left-0 right-0 w-full z-50 transition-colors duration-200 ${
         scrolled
-          ? "backdrop-blur-md bg-black/60 shadow-lg border-b border-white/10"
-          : "bg-transparent"
+          ? "bg-white/85 dark:bg-[#080C14]/90 backdrop-blur-md shadow-sm border-b border-slate-200 dark:border-white/[0.08]"
+          : "bg-white/40 dark:bg-[#080C14]/40 backdrop-blur-sm border-b border-slate-200/40 dark:border-white/[0.04]"
       }`}
     >
-      <nav className="flex items-center justify-between h-16">
-        {/* Logo + title */}
-        <div className="flex items-center gap-3">
-          <NavLink to="/" className="flex items-center gap-3 no-underline">
-            <div className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0 shadow-xl ring-1 ring-white/10">
-              <img
-                src={logo}
-                alt="CEF Logo"
-                className="w-full h-full object-cover"
-              />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <nav className="flex items-center justify-between h-16 gap-4">
+          {/* Logo & Department Brand */}
+          <NavLink to="/" className="flex items-center gap-3 no-underline group flex-shrink-0">
+            <div className="w-10 h-10 rounded-lg overflow-hidden flex-shrink-0 shadow-md ring-1 ring-slate-200 dark:ring-white/10 group-hover:ring-civil-amber transition-all">
+              <img src={logo} alt="CEF IIT Delhi" className="w-full h-full object-cover" />
             </div>
-            <div className="hidden sm:flex flex-col leading-tight">
-              <span className="text-white font-md text-sm">
-                Civil & Environmental Engineering
+            <div className="flex flex-col leading-none">
+              <span className="font-bold text-sm tracking-tight text-slate-900 dark:text-slate-100 font-sans group-hover:text-civil-amber transition-colors">
+                CEF IIT DELHI
               </span>
-              {/* <span className="text-white/80 text-xs">Engineering Forum</span> */}
+              <span className="text-[10px] text-slate-500 dark:text-slate-400 font-mono tracking-wider uppercase mt-0.5">
+                Dept. of Civil Engineering
+              </span>
             </div>
           </NavLink>
-        </div>
 
-        {/* Desktop menu */}
-        <div className="hidden md:flex items-center gap-6">
-          <div className="flex items-center gap-4">
+          {/* Desktop Navigation Links */}
+          <div className="hidden lg:flex items-center gap-1 xl:gap-2">
             {menuItems.map((item) => {
-              const id = item.toLowerCase().replace(/\s+/g, "-");
-              const isPage = [
-                "competitions",
-                "guest-sessions",
-                "magazine",
-                "study-material",
-              ].includes(id);
-              const to = isPage ? `/${id}` : `/#${id}`;
-              const isActive =
-                active === item || (isPage && location.pathname === `/${id}`);
+              const to = item.isPage ? `/${item.id}` : `/#${item.id}`;
+              const isActive = active === item.id;
 
-              const LinkComp = isPage ? NavLink : NavLink; // use NavLink for both; hash handled by to
-
-              return (
-                <LinkComp
-                  key={item}
-                  to={to}
-                  onClick={(e) => {
-                    if (!isPage) {
-                      handleSamePageClick(e, item, id);
-                    } else {
-                      setActive(item);
-                    }
-                  }}
-                  className={`relative px-3 py-2 rounded-md text-sm md:text-[15px] font-medium transition-all duration-200 cursor-pointer select-none no-underline whitespace-nowrap ${
-                    isActive ? "text-white" : "text-white/80 hover:text-white"
-                  }`}
-                >
-                  {item}
-                  <span
-                    className={`absolute left-2 right-2 bottom-0.5 h-0.5 rounded-full transition-all duration-300 bg-gradient-to-r from-yellow-600 to-red-500 ${
-                      isActive
-                        ? "opacity-100 scale-x-100"
-                        : "opacity-0 scale-x-0"
-                    }`}
-                  />
-                </LinkComp>
-              );
-            })}
-          </div>
-
-          <a
-            href="#join"
-            className="ml-2 inline-flex items-center gap-2 bg-gradient-to-r from-yellow-600 to-gray-400 text-black px-4 py-2 rounded-full text-sm font-semibold shadow-lg transform hover:scale-105 transition-transform no-underline"
-          >
-            Join Us
-          </a>
-        </div>
-
-        {/* Mobile menu button */}
-        <div className="flex items-center md:hidden">
-          <button
-            onClick={() => setIsMenuOpen(true)}
-            aria-label="Open menu"
-            className="p-2 rounded-md bg-white/5 hover:bg-white/10 text-white"
-          >
-            <MenuIcon />
-          </button>
-        </div>
-      </nav>
-
-      {/* Mobile Panel */}
-      <div
-        className={`fixed inset-0 z-40 transition-opacity md:hidden ${
-          isMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-        }`}
-        aria-hidden={!isMenuOpen}
-      >
-        <div
-          className={`absolute inset-0 bg-black/50 backdrop-blur-sm transition-opacity ${
-            isMenuOpen ? "opacity-100" : "opacity-0"
-          }`}
-          onClick={() => setIsMenuOpen(false)}
-        />
-
-        <aside
-          className={`fixed top-6 right-6 w-11/12 max-w-xs h-[calc(100%-3rem)] bg-gradient-to-b from-slate-900/95 to-slate-900/80 rounded-2xl shadow-2xl p-6 transform transition-transform duration-300 ease-in-out ${
-            isMenuOpen ? "translate-x-0" : "translate-x-4 opacity-0"
-          }`}
-          role="dialog"
-          aria-modal="true"
-        >
-          <div className="flex items-center justify-between mb-6">
-            <div>
-              <h3 className="text-white text-lg font-bold">Menu</h3>
-              <p className="text-white/60 text-xs">Quick links & resources</p>
-            </div>
-            <button
-              onClick={() => setIsMenuOpen(false)}
-              aria-label="Close menu"
-              className="p-2 rounded-md bg-white/5 hover:bg-white/10 text-white"
-            >
-              <CrossIcon />
-            </button>
-          </div>
-
-          <nav className="flex flex-col gap-3">
-            {menuItems.map((item, i) => {
-              const id = item.toLowerCase().replace(/\s+/g, "-");
-              const isPage = [
-                "competitions",
-                "guest-sessions",
-                "magazine",
-                "study-material",
-              ].includes(id);
-              const to = isPage ? `/${id}` : `/#${id}`;
-              const isActive =
-                active === item || (isPage && location.pathname === `/${id}`);
               return (
                 <NavLink
-                  key={item}
+                  key={item.id}
                   to={to}
-                  onClick={(e) => {
-                    if (!isPage) {
-                      handleSamePageClick(e, item, id);
-                    } else {
-                      setActive(item);
-                      setIsMenuOpen(false);
-                    }
-                  }}
-                  className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-colors duration-150 ${
+                  onClick={(e) => handleNavClick(e, item)}
+                  className={`relative px-2.5 py-1.5 rounded-md text-xs xl:text-sm font-medium transition-colors select-none no-underline ${
                     isActive
-                      ? "bg-white/6 text-white"
-                      : "text-white/80 hover:bg-white/5"
+                      ? "text-slate-900 dark:text-slate-50 font-semibold"
+                      : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"
                   }`}
-                  style={{ transitionDelay: `${i * 30}ms` }}
                 >
-                  <span className="w-2 h-2 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500" />
-                  <span className="text-sm font-medium">{item}</span>
+                  {item.label}
+                  {isActive && (
+                    <span className="absolute bottom-0 left-2.5 right-2.5 h-0.5 bg-civil-amber rounded-full" />
+                  )}
                 </NavLink>
               );
             })}
-          </nav>
+          </div>
 
-          <div className="mt-6 border-t border-white/6 pt-4 flex flex-col gap-3">
-            <a
-              href="#join"
-              className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-400 to-blue-500 text-black px-4 py-2 rounded-full text-sm font-semibold shadow-md"
+          {/* Action Center: Theme Toggle & Contact */}
+          <div className="flex items-center gap-2 sm:gap-3">
+            {/* Theme Toggle Button */}
+            <button
+              onClick={toggleTheme}
+              aria-label={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
+              title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
+              className="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.06] dark:hover:bg-white/[0.12] border border-slate-200 dark:border-white/[0.08] transition-colors active:scale-95"
             >
-              Join Us
+              {isDark ? <SunIcon /> : <MoonIcon />}
+            </button>
+
+            {/* Department Conclave / Join CTA */}
+            <a
+              href="#contact-us"
+              onClick={(e) => handleNavClick(e, { id: "contact-us" })}
+              className="hidden sm:inline-flex items-center justify-center px-4 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider bg-civil-amber hover:bg-civil-amber-hover text-black shadow-sm transition-transform active:scale-95 no-underline"
+            >
+              Get in Touch
             </a>
-            <div className="flex gap-3">
+
+            {/* Mobile Menu Toggle Button */}
+            <button
+              onClick={() => setIsMenuOpen(true)}
+              aria-label="Open mobile menu"
+              className="lg:hidden p-2 rounded-lg bg-slate-100 dark:bg-white/[0.06] border border-slate-200 dark:border-white/[0.08] text-slate-700 dark:text-slate-200 active:scale-95"
+            >
+              <MenuIcon />
+            </button>
+          </div>
+        </nav>
+      </div>
+
+      {/* Mobile Drawer */}
+      {isMenuOpen && (
+        <div className="fixed inset-0 z-50 lg:hidden">
+          <div
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
+            onClick={() => setIsMenuOpen(false)}
+          />
+
+          <aside className="fixed top-0 right-0 bottom-0 w-80 max-w-[85vw] bg-white dark:bg-[#0E1424] border-l border-slate-200 dark:border-white/[0.08] p-6 shadow-2xl flex flex-col justify-between overflow-y-auto">
+            <div>
+              {/* Drawer Header */}
+              <div className="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-white/[0.08]">
+                <div className="flex items-center gap-2">
+                  <img src={logo} alt="CEF" className="w-8 h-8 rounded" />
+                  <span className="font-bold text-sm text-slate-900 dark:text-slate-100">
+                    CEF IIT Delhi
+                  </span>
+                </div>
+                <button
+                  onClick={() => setIsMenuOpen(false)}
+                  aria-label="Close menu"
+                  className="p-1.5 rounded-lg bg-slate-100 dark:bg-white/[0.06] text-slate-700 dark:text-slate-300 active:scale-95"
+                >
+                  <CrossIcon />
+                </button>
+              </div>
+
+              {/* Navigation Items */}
+              <nav className="flex flex-col gap-1.5 mt-4">
+                {menuItems.map((item) => {
+                  const to = item.isPage ? `/${item.id}` : `/#${item.id}`;
+                  const isActive = active === item.id;
+
+                  return (
+                    <NavLink
+                      key={item.id}
+                      to={to}
+                      onClick={(e) => handleNavClick(e, item)}
+                      className={`flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium transition-colors no-underline ${
+                        isActive
+                          ? "bg-civil-amber/10 text-amber-700 dark:text-amber-400 font-semibold"
+                          : "text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-white/[0.04]"
+                      }`}
+                    >
+                      <span>{item.label}</span>
+                      {isActive && <span className="w-1.5 h-1.5 rounded-full bg-civil-amber" />}
+                    </NavLink>
+                  );
+                })}
+              </nav>
+            </div>
+
+            {/* Drawer Footer with Theme Toggle */}
+            <div className="pt-6 border-t border-slate-100 dark:border-white/[0.08] flex flex-col gap-4">
+              <div className="flex items-center justify-between">
+                <span className="text-xs text-slate-500 dark:text-slate-400 font-mono">
+                  Theme: {isDark ? "Dark Tectonic" : "Light Blueprint"}
+                </span>
+                <button
+                  onClick={toggleTheme}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/[0.06] border border-slate-200 dark:border-white/[0.08] text-xs font-medium"
+                >
+                  {isDark ? <SunIcon /> : <MoonIcon />}
+                  <span>{isDark ? "Light" : "Dark"}</span>
+                </button>
+              </div>
+
               <a
-                href="https://www.instagram.com/cef.iitd/"
-                target="_blank"
-                rel="noreferrer"
-                className="text-white/70 hover:text-white text-sm"
+                href="#contact-us"
+                onClick={(e) => handleNavClick(e, { id: "contact-us" })}
+                className="w-full text-center py-2.5 rounded-lg text-xs font-semibold uppercase tracking-wider bg-civil-amber text-black active:scale-98 transition-transform no-underline"
               >
-                Instagram
-              </a>
-              <a
-                href="https://www.linkedin.com/company/cef-iit-delhi/"
-                target="_blank"
-                rel="noreferrer"
-                className="text-white/70 hover:text-white text-sm"
-              >
-                LinkedIn
+                Contact Forum
               </a>
             </div>
-          </div>
-        </aside>
-      </div>
+          </aside>
+        </div>
+      )}
     </header>
   );
 }

@@ -4,10 +4,11 @@ import Competitions from "../components/Competitions";
 
 export default function CompetitionsPage() {
   return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
+    <div className="pt-24 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <SectionHeading
-        title="Competitions"
-        subtitle="From design sprints to simulation cups — challenge yourself and learn by doing."
+        badge="ENGINEERING CHALLENGES // CONTESTS"
+        title="Technical Competitions & Sprints"
+        subtitle="Put structural theory into physical practice: from scale bridge load tests and borehole analysis to 4D BIM modeling and hydraulics simulations."
       />
       <Competitions />
     </div>
