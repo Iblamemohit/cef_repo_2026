@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import React, { useState, useEffect, useRef } from "react";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import logo from "../assets/ceflogo.png";
 import { useTheme } from "../theme";
 
@@ -20,6 +20,37 @@ export default function Navbar() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
+  const logoClicksRef = useRef({ count: 0, lastTime: 0 });
+
+  // 1. Secret Hotkey: Ctrl+Shift+A (or Cmd+Shift+A)
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === "A" || e.key === "a")) {
+        e.preventDefault();
+        navigate("/admin");
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [navigate]);
+
+  // 2. Secret Logo Triple-Click Handler
+  const handleLogoClick = (e) => {
+    const now = Date.now();
+    if (now - logoClicksRef.current.lastTime < 600) {
+      logoClicksRef.current.count += 1;
+    } else {
+      logoClicksRef.current.count = 1;
+    }
+    logoClicksRef.current.lastTime = now;
+
+    if (logoClicksRef.current.count >= 3) {
+      e.preventDefault();
+      logoClicksRef.current.count = 0;
+      navigate("/admin");
+    }
+  };
 
   const menuItems = [
     { label: "About", id: "about" },
@@ -68,6 +99,7 @@ export default function Navbar() {
           {/* Logo Brand */}
           <NavLink
             to="/"
+            onClick={handleLogoClick}
             className="group flex min-w-0 items-center gap-3 no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cardinal rounded-full"
             aria-label="Civil Engineering Forum IIT Delhi, home"
           >
