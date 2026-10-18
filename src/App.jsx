@@ -2,8 +2,8 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
-import CompetitionsPage from "./pages/Competitions";
-import GuestSessionsPage from "./pages/GuestSessions";
+import EventsPage from "./pages/Events";
+import TeamPage from "./pages/Team";
 import MagazinePage from "./pages/Magazine";
 import StudyMaterialPage from "./pages/StudyMaterial";
 import { ThemeProvider } from "./theme";
@@ -16,8 +16,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/competitions" element={<CompetitionsPage />} />
-          <Route path="/guest-sessions" element={<GuestSessionsPage />} />
+          <Route path="/events" element={<EventsPage />} />
+          <Route path="/team" element={<TeamPage />} />
           <Route path="/magazine" element={<MagazinePage />} />
           <Route path="/study-material" element={<StudyMaterialPage />} />
           {/* Fallback to Home */}
