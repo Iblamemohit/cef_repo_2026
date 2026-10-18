@@ -142,18 +142,18 @@ export default function StudyMaterialPage() {
       />
 
       {/* Control Strip & Notice */}
-      <div className="p-4 rounded-xl bg-white dark:bg-[#0E1424] border border-slate-200 dark:border-white/[0.08] shadow-sm mb-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div className="p-4 rounded-token-xs bg-white dark:bg-sinc-surface-strong border border-slate-200 dark:border-sinc-border-muted shadow-token-1 mb-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <span className="w-2.5 h-2.5 rounded-full bg-civil-amber animate-pulse" />
-          <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 font-sans">
-            <strong className="text-slate-900 dark:text-white font-semibold">Note:</strong> All links open official student archive resources. Use (Ctrl/Cmd + Click) to open in new tab.
+          <span className="w-2.5 h-2.5 rounded-token-sm bg-civil-amber animate-pulse" />
+          <p className="text-xs sm:text-sm text-slate-700 dark:text-sinc-text-primary font-sans">
+            <strong className="text-slate-900 dark:text-sinc-text-secondary font-semibold">Note:</strong> All links open official student archive resources. Use (Ctrl/Cmd + Click) to open in new tab.
           </p>
         </div>
 
         <div className="flex items-center gap-3 w-full md:w-auto justify-end">
           <button
             onClick={() => setShowEmbed(!showEmbed)}
-            className="px-3.5 py-1.5 rounded-lg text-xs font-mono font-medium bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.06] dark:hover:bg-white/[0.12] border border-slate-200 dark:border-white/[0.08] text-slate-700 dark:text-slate-300 transition-colors active:scale-95"
+            className="px-3.5 py-1.5 rounded-token-xs text-xs font-mono font-medium bg-slate-100 hover:bg-slate-200 dark:bg-sinc-surface-raised dark:hover:bg-sinc-surface-muted border border-slate-200 dark:border-sinc-border-muted text-slate-700 dark:text-sinc-text-secondary transition-colors active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sinc-text-secondary"
           >
             {showEmbed ? "Hide Raw Mirror" : "Toggle Raw Web Mirror"}
           </button>
@@ -161,7 +161,7 @@ export default function StudyMaterialPage() {
             href="https://rahuliitd05.github.io/Semester3/"
             target="_blank"
             rel="noreferrer"
-            className="px-3.5 py-1.5 rounded-lg text-xs font-semibold uppercase tracking-wider bg-civil-amber hover:bg-civil-amber-hover text-black shadow-sm transition-transform active:scale-95 no-underline"
+            className="px-3.5 py-1.5 rounded-token-xs text-xs font-semibold uppercase tracking-wider bg-civil-amber hover:bg-civil-amber-hover text-black shadow-token-1 transition-transform active:scale-95 no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sinc-text-secondary"
           >
             Open External Portal &rarr;
           </a>
@@ -170,19 +170,19 @@ export default function StudyMaterialPage() {
 
       {/* Embedded Raw Viewer (Optional Drawer) */}
       {showEmbed && (
-        <div className="mb-8 p-3 rounded-2xl bg-white dark:bg-[#0E1424] border border-slate-200 dark:border-white/[0.08] shadow-lg">
-          <div className="flex items-center justify-between pb-3 px-2 border-b border-slate-200 dark:border-white/[0.08]">
-            <span className="text-xs font-mono text-slate-500 dark:text-slate-400">
+        <div className="mb-8 p-3 rounded-token-xs bg-white dark:bg-sinc-surface-strong border border-slate-200 dark:border-sinc-border-muted shadow-token-1">
+          <div className="flex items-center justify-between pb-3 px-2 border-b border-slate-200 dark:border-sinc-border-muted">
+            <span className="text-xs font-mono text-slate-500 dark:text-sinc-text-tertiary">
               MIRROR SOURCE: rahuliitd05.github.io/Semester3/
             </span>
             <button
               onClick={() => setShowEmbed(false)}
-              className="text-xs font-mono text-red-500 hover:underline"
+              className="text-xs font-mono text-red-500 hover:underline focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-red-400"
             >
               Close Mirror
             </button>
           </div>
-          <div className="relative pt-[56.25%] w-full rounded-xl overflow-hidden mt-3 border border-slate-200 dark:border-white/10">
+          <div className="relative pt-[56.25%] w-full rounded-token-xs overflow-hidden mt-3 border border-slate-200 dark:border-sinc-border-muted">
             <iframe
               src="https://rahuliitd05.github.io/Semester3/"
               className="absolute inset-0 w-full h-full border-0"
@@ -197,7 +197,7 @@ export default function StudyMaterialPage() {
       {/* Semester Filter Tabs & Search Bar */}
       <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mb-6">
         {/* Semester Buttons */}
-        <div className="flex items-center gap-1.5 bg-slate-100 dark:bg-white/[0.04] p-1 rounded-xl border border-slate-200 dark:border-white/[0.06] overflow-x-auto">
+        <div className="flex items-center gap-1.5 bg-slate-100 dark:bg-sinc-surface-base p-1 rounded-token-xs border border-slate-200 dark:border-sinc-border-muted overflow-x-auto">
           {[
             { id: "1-2", label: "Year 1 (Sem 1-2)" },
             { id: 3, label: "Semester 3" },
@@ -207,10 +207,10 @@ export default function StudyMaterialPage() {
             <button
               key={tab.id}
               onClick={() => setActiveSem(tab.id)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-medium font-mono whitespace-nowrap transition-all ${
+              className={`px-3 py-1.5 rounded-token-xs text-xs font-medium font-mono whitespace-nowrap transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sinc-text-secondary ${
                 activeSem === tab.id
-                  ? "bg-white dark:bg-[#162035] text-slate-900 dark:text-white shadow-sm border border-slate-200 dark:border-white/[0.12] font-semibold"
-                  : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                  ? "bg-white dark:bg-sinc-surface-raised text-slate-900 dark:text-sinc-text-secondary shadow-token-1 border border-slate-200 dark:border-sinc-border-muted font-semibold"
+                  : "text-slate-600 dark:text-sinc-text-tertiary hover:text-slate-900 dark:hover:text-sinc-text-secondary"
               }`}
             >
               {tab.label}
@@ -225,12 +225,12 @@ export default function StudyMaterialPage() {
             placeholder="Search course code or topic..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full px-3.5 py-2 rounded-xl text-xs bg-white dark:bg-[#0E1424] border border-slate-200 dark:border-white/[0.08] text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-1 focus:ring-civil-amber"
+            className="w-full px-3.5 py-2 rounded-token-xs text-xs bg-white dark:bg-sinc-surface-strong border border-slate-200 dark:border-sinc-border-muted text-slate-900 dark:text-sinc-text-secondary placeholder-slate-400 dark:placeholder-sinc-text-tertiary focus:outline-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sinc-text-secondary"
           />
           {searchQuery && (
             <button
               onClick={() => setSearchQuery("")}
-              className="absolute right-3 top-2.5 text-xs text-slate-400 hover:text-slate-600"
+              className="absolute right-3 top-2.5 text-xs text-slate-400 dark:text-sinc-text-tertiary hover:text-slate-600 dark:hover:text-sinc-text-secondary"
             >
               &times;
             </button>
@@ -243,16 +243,16 @@ export default function StudyMaterialPage() {
         {filteredCourses.map((course) => (
           <div
             key={course.code}
-            className="p-6 rounded-2xl bg-white dark:bg-[#0E1424] border border-slate-200 dark:border-white/[0.08] shadow-sm hover:border-civil-amber/50 dark:hover:border-civil-amber/40 transition-colors flex flex-col justify-between"
+            className="p-6 rounded-token-xs bg-white dark:bg-sinc-surface-strong border border-slate-200 dark:border-sinc-border-muted shadow-elevation-light dark:shadow-elevation-dark hover:border-civil-amber/40 hover:bg-sinc-surface-raised transition-colors flex flex-col justify-between"
           >
             <div>
               {/* Header: Code & Credits */}
-              <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-white/[0.06]">
+              <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-sinc-border-muted">
                 <div className="flex items-center gap-2">
-                  <span className="font-mono text-sm font-bold text-amber-700 dark:text-amber-400 bg-civil-amber/10 px-2 py-0.5 rounded border border-civil-amber/20">
+                  <span className="font-mono text-sm font-bold text-amber-700 dark:text-sinc-text-secondary bg-civil-amber/10 px-2 py-0.5 rounded-token-xs border border-civil-amber/20">
                     {course.code}
                   </span>
-                  <span className="font-mono text-xs text-slate-400">
+                  <span className="font-mono text-xs text-slate-400 dark:text-sinc-text-tertiary">
                     Credits: {course.credits}
                   </span>
                 </div>
@@ -262,18 +262,18 @@ export default function StudyMaterialPage() {
               </div>
 
               {/* Title & Core Topics */}
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white tracking-tight mt-3 font-sans">
+              <h3 className="text-lg font-bold text-slate-900 dark:text-sinc-text-secondary tracking-tight mt-3 font-sans">
                 {course.title}
               </h3>
 
-              <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 leading-relaxed">
-                <strong className="text-slate-700 dark:text-slate-300">Key Focus:</strong> {course.topics}
+              <p className="text-xs text-slate-500 dark:text-sinc-text-primary mt-1 leading-relaxed font-sans">
+                <strong className="text-slate-700 dark:text-sinc-text-secondary">Key Focus:</strong> {course.topics}
               </p>
             </div>
 
             {/* Direct Document Action Links */}
-            <div className="pt-4 mt-4 border-t border-slate-100 dark:border-white/[0.06]">
-              <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400 block mb-2">
+            <div className="pt-4 mt-4 border-t border-slate-100 dark:border-sinc-border-muted">
+              <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400 dark:text-sinc-text-tertiary block mb-2">
                 Available Resources:
               </span>
               <div className="flex flex-wrap gap-2">
@@ -283,7 +283,7 @@ export default function StudyMaterialPage() {
                     href={linkItem.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono bg-slate-50 hover:bg-slate-100 dark:bg-white/[0.04] dark:hover:bg-white/[0.08] border border-slate-200 dark:border-white/[0.08] text-slate-800 dark:text-slate-200 active:scale-95 transition-all no-underline"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-token-xs text-xs font-mono bg-slate-50 hover:bg-slate-100 dark:bg-sinc-surface-base hover:dark:bg-sinc-surface-raised border border-slate-200 dark:border-sinc-border-muted text-slate-800 dark:text-sinc-text-secondary active:scale-95 transition-all no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sinc-text-secondary"
                   >
                     <span>{linkItem.label}</span>
                     <span className="text-civil-amber">&rarr;</span>
@@ -296,8 +296,8 @@ export default function StudyMaterialPage() {
       </div>
 
       {filteredCourses.length === 0 && (
-        <div className="p-12 text-center rounded-2xl bg-white dark:bg-[#0E1424] border border-slate-200 dark:border-white/[0.08] text-slate-500 font-mono text-sm">
-          No courses matching "{searchQuery}" in this semester filter.
+        <div className="p-12 text-center rounded-token-xs bg-white dark:bg-sinc-surface-strong border border-slate-200 dark:border-sinc-border-muted text-slate-500 dark:text-sinc-text-tertiary font-mono text-sm">
+          No courses matching &ldquo;{searchQuery}&rdquo; in this semester filter.
         </div>
       )}
     </div>

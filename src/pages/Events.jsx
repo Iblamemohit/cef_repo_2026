@@ -54,16 +54,23 @@ function RSVPButton({ event }) {
 
   if (event.status === "past") {
     return (
-      <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-white/[0.06] border border-slate-200 dark:border-white/[0.08] text-xs text-slate-500 dark:text-slate-400">
+      <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-token-xs bg-slate-100 dark:bg-sinc-surface-base border border-slate-200 dark:border-sinc-border-muted text-xs text-slate-500 dark:text-sinc-text-tertiary">
         <UsersIcon />
-        <span className="font-mono font-semibold">{count}</span>
+        <span className="font-mono font-semibold text-slate-800 dark:text-sinc-text-secondary">{count}</span>
         <span>attended</span>
       </div>
     );
   }
 
   return (
-    <button onClick={handleRSVP} className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-semibold transition-all active:scale-95 ${rsvped ? "bg-civil-amber text-black border-civil-amber shadow-glow-amber" : "bg-slate-100 dark:bg-white/[0.06] border-slate-200 dark:border-white/[0.08] text-slate-700 dark:text-slate-200 hover:border-civil-amber/50 hover:text-civil-amber"}`}>
+    <button
+      onClick={handleRSVP}
+      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-token-xs border text-xs font-semibold transition-all active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sinc-text-secondary ${
+        rsvped
+          ? "bg-civil-amber text-black border-civil-amber shadow-token-1"
+          : "bg-slate-100 dark:bg-sinc-surface-raised border-slate-200 dark:border-sinc-border-muted text-slate-700 dark:text-sinc-text-secondary hover:border-civil-amber/50 hover:text-civil-amber"
+      }`}
+    >
       {rsvped ? <CheckIcon /> : <UsersIcon />}
       <span className="font-mono">{count}</span>
       <span>{rsvped ? "RSVP'd!" : "RSVP"}</span>
@@ -77,33 +84,33 @@ function EventCard({ event }) {
   const isUpcoming = event.status === "upcoming";
 
   return (
-    <article className="group relative flex flex-col rounded-2xl overflow-hidden border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-civil-dark-surface shadow-elevation-light dark:shadow-elevation-dark hover:border-civil-amber/40 transition-all duration-300 hover:-translate-y-0.5">
+    <article className="group relative flex flex-col rounded-token-xs overflow-hidden border border-slate-200 dark:border-sinc-border-muted bg-white dark:bg-sinc-surface-strong shadow-elevation-light dark:shadow-elevation-dark hover:border-civil-amber/40 hover:bg-sinc-surface-raised transition-all duration-instant hover:-translate-y-0.5">
       <div className="relative h-48 w-full overflow-hidden flex-shrink-0">
         <img src={event.img} alt={event.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
         <div className="absolute top-3 left-3">
           {isUpcoming ? (
-            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-token-sm text-xs font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+              <span className="w-1.5 h-1.5 rounded-token-sm bg-emerald-400 animate-pulse" />
               Upcoming
             </span>
           ) : (
-            <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-500/20 text-slate-300 border border-slate-500/30">Past</span>
+            <span className="px-2.5 py-0.5 rounded-token-sm text-xs font-semibold bg-slate-500/20 text-slate-300 border border-slate-500/30">Past</span>
           )}
         </div>
         <div className="absolute bottom-3 left-3">
-          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-mono font-medium bg-civil-amber/20 border border-civil-amber/30 text-amber-300">
-            <span className="w-1.5 h-1.5 rounded-full bg-civil-amber" />
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-token-sm text-xs font-mono font-medium bg-civil-amber/20 border border-civil-amber/30 text-amber-300">
+            <span className="w-1.5 h-1.5 rounded-token-sm bg-civil-amber" />
             {event.month} {event.year}
           </span>
         </div>
       </div>
       <div className="flex flex-col flex-1 p-5 gap-3">
-        <span className={`self-start px-2.5 py-0.5 rounded-full text-[11px] font-semibold font-mono border ${typeCls}`}>{event.type}</span>
-        <h3 className="text-base font-bold text-slate-900 dark:text-slate-50 leading-snug line-clamp-2 group-hover:text-civil-amber transition-colors">{event.name}</h3>
-        <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed line-clamp-3 flex-1">{event.desc}</p>
-        <div className="flex items-center justify-between pt-2 border-t border-slate-100 dark:border-white/[0.06] mt-auto">
-          <div className="flex items-center gap-1.5 text-xs text-slate-400 dark:text-slate-500">
+        <span className={`self-start px-2.5 py-0.5 rounded-token-sm text-[11px] font-semibold font-mono border ${typeCls}`}>{event.type}</span>
+        <h3 className="text-base font-bold text-slate-900 dark:text-sinc-text-secondary leading-snug line-clamp-2 group-hover:text-civil-amber transition-colors font-sans">{event.name}</h3>
+        <p className="text-sm text-slate-600 dark:text-sinc-text-primary leading-relaxed line-clamp-3 flex-1 font-sans">{event.desc}</p>
+        <div className="flex items-center justify-between pt-2 border-t border-slate-100 dark:border-sinc-border-muted mt-auto">
+          <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-sinc-text-tertiary">
             <CalendarIcon />
             <span className="font-mono">{event.timeline}</span>
           </div>
@@ -117,7 +124,14 @@ function EventCard({ event }) {
 /* ─── Filter Pill ─────────────────────────────────────────────────────── */
 function FilterPill({ label, active, onClick }) {
   return (
-    <button onClick={onClick} className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all active:scale-95 ${active ? "bg-civil-amber text-black border-civil-amber shadow-glow-amber" : "bg-slate-100 dark:bg-white/[0.06] border-slate-200 dark:border-white/[0.08] text-slate-600 dark:text-slate-300 hover:border-civil-amber/50 hover:text-civil-amber"}`}>
+    <button
+      onClick={onClick}
+      className={`px-3 py-1.5 rounded-token-xs text-xs font-semibold border transition-all active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sinc-text-secondary ${
+        active
+          ? "bg-civil-amber text-black border-civil-amber shadow-token-1"
+          : "bg-slate-100 dark:bg-sinc-surface-base border-slate-200 dark:border-sinc-border-muted text-slate-600 dark:text-sinc-text-tertiary hover:border-civil-amber/50 hover:text-sinc-text-secondary"
+      }`}
+    >
       {label}
     </button>
   );
@@ -150,7 +164,7 @@ export default function EventsPage() {
   const pastCount = Events.filter((e) => e.status === "past").length;
 
   return (
-    <div className="pt-20 min-h-screen bg-civil-light-canvas dark:bg-civil-dark-canvas">
+    <div className="pt-20 min-h-screen bg-civil-light-canvas dark:bg-black">
 
       {/* ── Section 1: Dynamic Events & Annual Calendar ────────────── */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -162,33 +176,39 @@ export default function EventsPage() {
             { label: "Upcoming", value: upcomingCount, highlight: true },
             { label: "Past Events", value: pastCount },
           ].map(({ label, value, highlight }) => (
-            <div key={label} className={`flex flex-col px-5 py-3 rounded-xl border ${highlight ? "bg-civil-amber/10 border-civil-amber/30 text-civil-amber" : "bg-white dark:bg-civil-dark-surface border-slate-200 dark:border-white/[0.08] text-slate-900 dark:text-slate-100"}`}>
+            <div key={label} className={`flex flex-col px-5 py-3 rounded-token-xs border ${highlight ? "bg-civil-amber/10 border-civil-amber/30 text-civil-amber" : "bg-white dark:bg-sinc-surface-strong border-slate-200 dark:border-sinc-border-muted text-slate-900 dark:text-sinc-text-secondary"}`}>
               <span className="text-2xl font-bold font-mono">{value}</span>
-              <span className={`text-xs ${highlight ? "text-amber-600 dark:text-amber-400" : "text-slate-500 dark:text-slate-400"}`}>{label}</span>
+              <span className={`text-xs ${highlight ? "text-amber-600 dark:text-amber-400" : "text-slate-500 dark:text-sinc-text-tertiary"}`}>{label}</span>
             </div>
           ))}
         </div>
 
         <div className="flex flex-col gap-4 mb-8">
           <div className="relative max-w-lg">
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"><SearchIcon /></span>
-            <input type="text" placeholder="Search events by name, type…" value={search} onChange={(e) => setSearch(e.target.value)} className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-white/[0.08] bg-white dark:bg-civil-dark-surface text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 text-sm outline-none focus:border-civil-amber/60 focus:ring-2 focus:ring-civil-amber/20 transition" />
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-sinc-text-tertiary"><SearchIcon /></span>
+            <input
+              type="text"
+              placeholder="Search events by name, type…"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full pl-9 pr-4 py-2.5 rounded-token-xs border border-slate-200 dark:border-sinc-border-muted bg-white dark:bg-sinc-surface-strong text-slate-900 dark:text-sinc-text-secondary placeholder-slate-400 dark:placeholder-sinc-text-tertiary text-sm outline-none focus:border-civil-amber/60 focus:ring-2 focus:ring-civil-amber/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sinc-text-secondary transition"
+            />
           </div>
           <div className="flex flex-wrap gap-2 items-center">
-            <span className="text-xs font-mono text-slate-400 uppercase tracking-wider">Status:</span>
+            <span className="text-xs font-mono text-slate-400 dark:text-sinc-text-tertiary uppercase tracking-wider">Status:</span>
             {["All", "Upcoming", "Past"].map((s) => (<FilterPill key={s} label={s} active={statusFilter === s} onClick={() => setStatusFilter(s)} />))}
           </div>
           <div className="flex flex-wrap gap-2 items-center">
-            <span className="text-xs font-mono text-slate-400 uppercase tracking-wider">Year:</span>
+            <span className="text-xs font-mono text-slate-400 dark:text-sinc-text-tertiary uppercase tracking-wider">Year:</span>
             {years.map((y) => (<FilterPill key={y} label={y} active={yearFilter === y} onClick={() => setYearFilter(y)} />))}
           </div>
           <div className="flex flex-wrap gap-2 items-center">
-            <span className="text-xs font-mono text-slate-400 uppercase tracking-wider">Type:</span>
+            <span className="text-xs font-mono text-slate-400 dark:text-sinc-text-tertiary uppercase tracking-wider">Type:</span>
             {types.map((t) => (<FilterPill key={t} label={t} active={typeFilter === t} onClick={() => setTypeFilter(t)} />))}
           </div>
         </div>
 
-        <p className="text-xs text-slate-400 dark:text-slate-500 font-mono mb-6">
+        <p className="text-xs text-slate-400 dark:text-sinc-text-tertiary font-mono mb-6">
           Showing <span className="text-civil-amber font-semibold">{filtered.length}</span> of {Events.length} events
         </p>
 
@@ -199,9 +219,9 @@ export default function EventsPage() {
         ) : (
           <div className="flex flex-col items-center justify-center py-24 gap-4 text-center">
             <span className="text-5xl">🔍</span>
-            <p className="text-lg font-semibold text-slate-700 dark:text-slate-300">No events found</p>
-            <p className="text-sm text-slate-400">Try adjusting your search or filters.</p>
-            <button onClick={() => { setSearch(""); setYearFilter("All"); setTypeFilter("All"); setStatusFilter("All"); }} className="mt-2 px-4 py-2 rounded-lg bg-civil-amber text-black text-sm font-semibold active:scale-95 transition-transform">Clear Filters</button>
+            <p className="text-lg font-semibold text-slate-700 dark:text-sinc-text-secondary">No events found</p>
+            <p className="text-sm text-slate-400 dark:text-sinc-text-tertiary">Try adjusting your search or filters.</p>
+            <button onClick={() => { setSearch(""); setYearFilter("All"); setTypeFilter("All"); setStatusFilter("All"); }} className="mt-2 px-4 py-2 rounded-token-xs bg-civil-amber text-black text-sm font-semibold active:scale-95 transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sinc-text-secondary">Clear Filters</button>
           </div>
         )}
       </div>
