@@ -104,23 +104,23 @@ export default function Competitions() {
         return (
           <div
             key={i}
-            className={`p-6 rounded-2xl bg-white dark:bg-[#0E1424] border transition-all duration-200 flex flex-col justify-between shadow-sm ${
+            className={`p-6 rounded-token-xs bg-white dark:bg-sinc-surface-strong border transition-all duration-instant flex flex-col justify-between shadow-token-1 ${
               isExpanded
-                ? "border-civil-amber shadow-md"
-                : "border-slate-200 dark:border-white/[0.08] hover:border-slate-300 dark:hover:border-white/[0.16]"
+                ? "border-civil-amber shadow-token-2"
+                : "border-slate-200 dark:border-sinc-border-muted hover:border-civil-amber/40"
             }`}
           >
             <div>
               {/* Card Meta Header */}
-              <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-white/[0.06]">
-                <span className="font-mono text-xs font-bold text-amber-700 dark:text-amber-400">
+              <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-sinc-border-muted">
+                <span className="font-mono text-xs font-bold text-amber-700 dark:text-sinc-text-secondary">
                   {c.code}
                 </span>
                 <span
-                  className={`text-[10px] font-mono px-2 py-0.5 rounded-full ${
+                  className={`text-[10px] font-mono px-2 py-0.5 rounded-token-sm ${
                     c.status === "Registration Open"
                       ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20"
-                      : "bg-slate-100 dark:bg-white/[0.05] text-slate-500 dark:text-slate-400"
+                      : "bg-slate-100 dark:bg-sinc-surface-raised text-slate-500 dark:text-sinc-text-tertiary border border-slate-200 dark:border-sinc-border-muted"
                   }`}
                 >
                   {c.status}
@@ -129,36 +129,36 @@ export default function Competitions() {
 
               {/* Domain & Title */}
               <div className="mt-3">
-                <span className="text-[11px] font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                <span className="text-[11px] font-mono uppercase tracking-wider text-slate-500 dark:text-sinc-text-tertiary">
                   {c.domain}
                 </span>
-                <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white font-sans mt-0.5">
+                <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-sinc-text-secondary font-sans mt-0.5">
                   {c.title}
                 </h3>
               </div>
 
-              <p className="text-xs text-slate-600 dark:text-slate-300 mt-2 leading-relaxed font-sans">
+              <p className="text-xs text-slate-600 dark:text-sinc-text-primary mt-2 leading-relaxed font-sans">
                 {c.desc}
               </p>
 
               {/* Expandable Details Section */}
               {isExpanded && (
-                <div className="mt-4 pt-4 border-t border-slate-100 dark:border-white/[0.06] flex flex-col gap-3">
+                <div className="mt-4 pt-4 border-t border-slate-100 dark:border-sinc-border-muted flex flex-col gap-3">
                   <div>
-                    <h4 className="text-xs font-mono uppercase text-amber-700 dark:text-amber-400 font-semibold mb-1">
+                    <h4 className="text-xs font-mono uppercase text-amber-700 dark:text-sinc-text-secondary font-semibold mb-1">
                       Problem Statement:
                     </h4>
-                    <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed font-sans">
+                    <p className="text-xs text-slate-600 dark:text-sinc-text-primary leading-relaxed font-sans">
                       {c.details}
                     </p>
                   </div>
 
                   {c.rules && (
                     <div>
-                      <h4 className="text-xs font-mono uppercase text-slate-500 dark:text-slate-400 font-semibold mb-1">
+                      <h4 className="text-xs font-mono uppercase text-slate-500 dark:text-sinc-text-tertiary font-semibold mb-1">
                         Specifications & Guidelines:
                       </h4>
-                      <ul className="list-disc list-inside text-xs text-slate-500 dark:text-slate-400 space-y-1">
+                      <ul className="list-disc list-inside text-xs text-slate-500 dark:text-sinc-text-tertiary space-y-1">
                         {c.rules.map((r, rIdx) => (
                           <li key={rIdx}>{r}</li>
                         ))}
@@ -170,10 +170,10 @@ export default function Competitions() {
             </div>
 
             {/* Actions Footer */}
-            <div className="pt-4 mt-4 border-t border-slate-100 dark:border-white/[0.06] flex items-center justify-between">
+            <div className="pt-4 mt-4 border-t border-slate-100 dark:border-sinc-border-muted flex items-center justify-between">
               <button
                 onClick={() => toggleExpand(i)}
-                className="text-xs font-mono text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                className="text-xs font-mono text-slate-600 dark:text-sinc-text-tertiary hover:text-slate-900 dark:hover:text-sinc-text-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sinc-text-secondary rounded"
               >
                 {isExpanded ? "Hide Details ↑" : "View Rules & Specs ↓"}
               </button>
@@ -181,12 +181,12 @@ export default function Competitions() {
               {c.registerUrl ? (
                 <a
                   href={c.registerUrl}
-                  className="px-3.5 py-1.5 rounded-lg text-xs font-semibold uppercase tracking-wider bg-civil-amber hover:bg-civil-amber-hover text-black shadow-sm active:scale-95 transition-transform no-underline"
+                  className="px-3.5 py-1.5 rounded-token-xs text-xs font-semibold uppercase tracking-wider bg-civil-amber hover:bg-civil-amber-hover text-white shadow-token-1 active:scale-95 transition-transform no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sinc-text-secondary"
                 >
                   Register
                 </a>
               ) : (
-                <span className="text-xs font-mono text-slate-400">
+                <span className="text-xs font-mono text-slate-400 dark:text-sinc-text-tertiary">
                   Opening Soon
                 </span>
               )}

@@ -2,6 +2,74 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  /* Stanford CEE (cee.stanford.edu) Theme Color Palette */
+  --background: #faf8f5;           /* Stanford Sandstone / Warm Canvas */
+  --foreground: #1c1a17;           /* Stanford Charcoal / Black */
+  --card: #ffffff;
+  --card-foreground: #1c1a17;
+  --muted: #5c5852;                /* Stanford Stone */
+  --muted-foreground: #78746c;
+  --border: #e6e2d8;               /* Stanford Fog / Sandstone Border */
+  --border-ink: #8c1515;           /* Signature Stanford Cardinal Red stroke */
+  
+  /* Stanford Brand Tokens */
+  --brand-cardinal: #8c1515;       /* Stanford Cardinal Red (PMS 201 C) */
+  --brand-cardinal-dark: #820000;  /* Dark Cardinal for active/hover */
+  --brand-cardinal-light: #b83a4b; /* Light Cardinal */
+  --brand-palo-alto: #175e54;      /* Palo Alto Redwood Green (Tree & Sustainability) */
+  --brand-palo-verde: #279989;     /* Palo Verde Accent */
+  --brand-lagunita: #007c92;       /* Lagunita Teal */
+  
+  /* Semantic Aliases */
+  --brand-teal: #8c1515;           /* Cardinal Red as primary brand highlight */
+  --brand-blue: #175e54;           /* Palo Alto Green for environmental accents */
+  --accent-lime: #8c1515;          /* Live status pill & badges adopt Cardinal Red */
+  --accent-tint: rgba(140, 21, 21, 0.08);
+  --on-accent: #ffffff;            /* Crisp white text on Cardinal Red */
+  
+  /* Inverse / Footer */
+  --inverse: #181716;              /* Stanford Dark Stone Base */
+  --inverse-foreground: #faf8f5;   /* Warm Stone White */
+  --inverse-muted: #8d877d;
+  --grid-on-inverse: rgba(255, 255, 255, 0.08);
+  --club-gold: #d49b24;            /* Stanford Poppy Gold */
+}
+
+html.dark {
+  /* Stanford CEE Dark Mode */
+  --background: #11100f;           /* Stanford Deep Charcoal */
+  --foreground: #faf8f5;           /* Sandstone White */
+  --card: #1b1a18;                 /* Stanford Dark Stone */
+  --card-foreground: #faf8f5;
+  --muted: #a6a095;                /* Light Stone */
+  --muted-foreground: #847e74;
+  --border: #2d2b28;               /* Dark Stone Border */
+  --border-ink: #c73838;           /* Cardinal Red Dark Accent */
+  
+  /* Stanford Brand Tokens Dark */
+  --brand-cardinal: #e54848;       /* High-contrast Cardinal Red for dark theme */
+  --brand-cardinal-dark: #b83a4b;
+  --brand-cardinal-light: #ff6b6b;
+  --brand-palo-alto: #279989;      /* Vibrant Palo Verde green */
+  --brand-palo-verde: #34d399;
+  --brand-lagunita: #009bb5;
+  
+  /* Semantic Aliases Dark */
+  --brand-teal: #e54848;
+  --brand-blue: #279989;
+  --accent-lime: #e54848;
+  --accent-tint: rgba(229, 72, 72, 0.16);
+  --on-accent: #ffffff;
+  
+  /* Inverse / Footer Dark */
+  --inverse: #0d0c0c;
+  --inverse-foreground: #faf8f5;
+  --inverse-muted: #847e74;
+  --grid-on-inverse: rgba(255, 255, 255, 0.05);
+  --club-gold: #eab308;
+}
+
 @layer base {
   *, *::before, *::after {
     box-sizing: border-box;
@@ -14,106 +82,126 @@
     text-rendering: optimizeLegibility;
   }
 
-  ::selection {
-    background-color: #F59E0B;
-    color: #000000;
-  }
-
-  /* Drafting Table Light Mode Canvas */
-  html.light, html:not(.dark) {
-    color-scheme: light;
-  }
-
-  html.light body, html:not(.dark) body {
-    background-color: #F8FAFC;
-    color: #0F172A;
-    background-image: 
-      linear-gradient(to right, rgba(226, 232, 240, 0.6) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(226, 232, 240, 0.6) 1px, transparent 1px);
-    background-size: 32px 32px;
-  }
-
-  /* Tectonic Steel Dark Mode Canvas */
-  html.dark {
-    color-scheme: dark;
-  }
-
-  html.dark body {
-    background-color: #080C14;
-    color: #F8FAFC;
-    background-image: 
-      linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-    background-size: 32px 32px;
-  }
-
   body {
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24.8px;
     min-height: 100vh;
     margin: 0;
     overflow-x: hidden;
+    transition: background-color 200ms ease, color 200ms ease;
   }
 
-  /* Accessible Focus Rings */
+  ::selection {
+    background-color: var(--brand-cardinal);
+    color: #ffffff;
+  }
+
+  /* Accessible focus indicators */
   :focus-visible {
-    outline: 2px solid #F59E0B;
+    outline: 2px solid var(--brand-cardinal);
     outline-offset: 2px;
-  }
-
-  /* Subtle Custom Scrollbar */
-  ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-
-  html.dark ::-webkit-scrollbar-track {
-    background: #080C14;
-  }
-
-  html.dark ::-webkit-scrollbar-thumb {
-    background: #1E293B;
-    border-radius: 4px;
-  }
-
-  html.dark ::-webkit-scrollbar-thumb:hover {
-    background: #334155;
-  }
-
-  html.light ::-webkit-scrollbar-track {
-    background: #F1F5F9;
-  }
-
-  html.light ::-webkit-scrollbar-thumb {
-    background: #CBD5E1;
-    border-radius: 4px;
-  }
-
-  html.light ::-webkit-scrollbar-thumb:hover {
-    background: #94A3B8;
   }
 }
 
-/* Civil Engineering Blueprint Utilities */
-@layer utilities {
-  .blueprint-crosshair {
-    position: relative;
+/* SInC Custom Components & Typography Standards */
+@layer components {
+  .mega-display {
+    font-family: "Bricolage Grotesque", "Geist", sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.035em;
   }
 
-  .blueprint-crosshair::before {
-    content: "+";
-    position: absolute;
-    font-family: "JetBrains Mono", monospace;
-    font-size: 12px;
-    line-height: 1;
-    color: rgba(245, 158, 11, 0.4);
-    pointer-events: none;
+  .headline-tight {
+    font-family: "Bricolage Grotesque", "Geist", sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.025em;
   }
 
-  .hairline-border {
-    border: 1px solid rgba(255, 255, 255, 0.08);
+  .editorial-display {
+    font-family: "Bricolage Grotesque", "Geist", sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
   }
 
-  .light .hairline-border {
-    border: 1px solid rgba(0, 0, 0, 0.08);
+  .pill-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    padding: 0.625rem 1.625rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    background-color: var(--brand-cardinal);
+    color: #ffffff !important;
+    transition: transform 150ms ease-out, opacity 150ms ease-out, background-color 150ms ease-out, box-shadow 150ms ease-out;
+    box-shadow: 0 2px 10px rgba(140, 21, 21, 0.25);
+  }
+
+  .pill-cta:hover {
+    background-color: var(--brand-cardinal-dark);
+    color: #ffffff !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(140, 21, 21, 0.35);
+  }
+
+  .pill-cta:active {
+    transform: scale(0.97);
+  }
+
+  .pill-cta-outline {
+    background-color: var(--card);
+    color: var(--foreground) !important;
+    border: 1px solid var(--border);
+    box-shadow: none;
+  }
+
+  .pill-cta-outline:hover {
+    background-color: var(--brand-cardinal);
+    color: #ffffff !important;
+    border-color: var(--brand-cardinal);
+  }
+
+  html.dark .pill-cta-outline:hover {
+    background-color: var(--brand-cardinal);
+    color: #ffffff !important;
+    border-color: var(--brand-cardinal);
+  }
+
+  .pill-cta-inverse {
+    background-color: #ffffff;
+    color: #8c1515 !important;
+  }
+
+  .pill-cta-inverse:hover {
+    background-color: #faf8f5;
+    color: #820000 !important;
+  }
+
+  .brutal-shadow {
+    box-shadow: 3px 3px 0px 0px currentColor;
+  }
+
+  .brutal-shadow-hover:hover {
+    box-shadow: 1px 1px 0px 0px currentColor;
+    transform: translate(2px, 2px);
+  }
+
+  .dot-grid {
+    background-image: radial-gradient(circle, currentColor 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .lime-mark {
+    background-color: var(--accent-lime);
+    color: #ffffff !important;
+    padding: 0 0.35em;
+    display: inline-block;
+    border-radius: 4px;
   }
 }

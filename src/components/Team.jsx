@@ -6,19 +6,19 @@ function TeamTier({ title, subtitle, count, children }) {
   return (
     <div className="w-full flex flex-col gap-6 items-center">
       <div className="flex flex-col items-center gap-1">
-        <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-slate-100 dark:bg-white/[0.05] border border-slate-200 dark:border-white/[0.08]">
-          <span className="w-1.5 h-1.5 rounded-full bg-civil-amber" />
-          <span className="text-xs font-mono font-medium text-slate-700 dark:text-slate-300 uppercase tracking-wider">
+        <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-token-sm bg-slate-100 dark:bg-sinc-surface-muted border border-slate-200 dark:border-sinc-border-muted">
+          <span className="w-1.5 h-1.5 rounded-token-sm bg-civil-amber" />
+          <span className="text-xs font-mono font-medium text-slate-700 dark:text-sinc-text-secondary uppercase tracking-wider">
             {title}
           </span>
           {count > 0 && (
-            <span className="text-[10px] font-mono text-slate-400 dark:text-slate-500">
+            <span className="text-[10px] font-mono text-slate-400 dark:text-sinc-text-tertiary">
               ({count})
             </span>
           )}
         </div>
         {subtitle && (
-          <p className="text-xs text-slate-500 dark:text-slate-400 font-sans">
+          <p className="text-xs text-slate-500 dark:text-sinc-text-tertiary font-sans">
             {subtitle}
           </p>
         )}

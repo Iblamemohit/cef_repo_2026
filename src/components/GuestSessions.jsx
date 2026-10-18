@@ -49,36 +49,36 @@ export default function GuestSessions() {
       {SESSIONS.map((s, i) => (
         <div
           key={i}
-          className="p-6 sm:p-7 rounded-2xl bg-white dark:bg-[#0E1424] border border-slate-200 dark:border-white/[0.08] shadow-elevation-light dark:shadow-elevation-dark hover:border-civil-amber/50 dark:hover:border-civil-amber/40 transition-colors flex flex-col justify-between"
+          className="p-6 sm:p-7 rounded-token-xs bg-white dark:bg-sinc-surface-strong border border-slate-200 dark:border-sinc-border-muted shadow-elevation-light dark:shadow-elevation-dark hover:border-civil-amber/40 hover:bg-sinc-surface-raised transition-colors flex flex-col justify-between"
         >
           <div>
             {/* Header: Date & Venue */}
-            <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-white/[0.06]">
-              <span className="font-mono text-xs font-semibold text-amber-700 dark:text-amber-400">
+            <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-sinc-border-muted">
+              <span className="font-mono text-xs font-semibold text-amber-700 dark:text-sinc-text-secondary">
                 {s.date}
               </span>
-              <span className="font-mono text-[10px] text-slate-500 dark:text-slate-400">
+              <span className="font-mono text-[10px] text-slate-500 dark:text-sinc-text-tertiary">
                 {s.venue}
               </span>
             </div>
 
             {/* Topic & Speaker */}
             <div className="mt-3">
-              <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white font-sans leading-snug">
+              <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-sinc-text-secondary font-sans leading-snug">
                 {s.topic}
               </h3>
 
               <div className="mt-2 flex flex-col">
-                <span className="text-sm font-semibold text-slate-800 dark:text-slate-200 font-sans">
+                <span className="text-sm font-semibold text-slate-800 dark:text-sinc-text-secondary font-sans">
                   {s.speaker}
                 </span>
-                <span className="text-xs text-slate-500 dark:text-slate-400">
+                <span className="text-xs text-slate-500 dark:text-sinc-text-tertiary">
                   {s.designation}
                 </span>
               </div>
             </div>
 
-            <p className="text-xs text-slate-600 dark:text-slate-300 mt-3 leading-relaxed font-sans">
+            <p className="text-xs text-slate-600 dark:text-sinc-text-primary mt-3 leading-relaxed font-sans">
               {s.desc}
             </p>
 
@@ -87,7 +87,7 @@ export default function GuestSessions() {
               {s.tags.map((t, tIdx) => (
                 <span
                   key={tIdx}
-                  className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 dark:bg-white/[0.05] text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-white/[0.05]"
+                  className="text-[10px] font-mono px-2 py-0.5 rounded-token-sm bg-slate-100 dark:bg-sinc-surface-base text-slate-600 dark:text-sinc-text-tertiary border border-slate-200 dark:border-sinc-border-muted"
                 >
                   #{t}
                 </span>
@@ -96,8 +96,8 @@ export default function GuestSessions() {
           </div>
 
           {/* Action */}
-          <div className="pt-4 mt-4 border-t border-slate-100 dark:border-white/[0.06] flex items-center justify-between">
-            <span className="text-xs font-mono text-slate-400">
+          <div className="pt-4 mt-4 border-t border-slate-100 dark:border-sinc-border-muted flex items-center justify-between">
+            <span className="text-xs font-mono text-slate-400 dark:text-sinc-text-tertiary">
               Session Archive
             </span>
 
@@ -105,7 +105,7 @@ export default function GuestSessions() {
               href={s.replayUrl}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold uppercase tracking-wider bg-civil-amber hover:bg-civil-amber-hover text-black shadow-sm active:scale-95 transition-transform no-underline"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-token-xs text-xs font-semibold uppercase tracking-wider bg-civil-amber hover:bg-civil-amber-hover text-white shadow-token-1 active:scale-95 transition-transform no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sinc-text-secondary"
             >
               <span>Watch Replay</span>
               <span>&rarr;</span>

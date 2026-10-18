@@ -5,7 +5,7 @@ import { AlumniData } from "../data/alumni";
 function Alumni() {
   if (!AlumniData || AlumniData.length === 0) {
     return (
-      <div className="w-full py-12 text-center text-slate-500 font-mono text-sm">
+      <div className="w-full py-12 text-center text-slate-500 dark:text-sinc-text-tertiary font-mono text-sm">
         No alumni records currently published.
       </div>
     );
@@ -14,13 +14,13 @@ function Alumni() {
   return (
     <div className="w-full flex flex-col gap-8 items-center">
       <div className="flex flex-col items-center gap-1">
-        <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-slate-100 dark:bg-white/[0.05] border border-slate-200 dark:border-white/[0.08]">
-          <span className="w-1.5 h-1.5 rounded-full bg-civil-amber" />
-          <span className="text-xs font-mono font-medium text-slate-700 dark:text-slate-300 uppercase tracking-wider">
+        <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-token-sm bg-slate-100 dark:bg-sinc-surface-muted border border-slate-200 dark:border-sinc-border-muted">
+          <span className="w-1.5 h-1.5 rounded-token-sm bg-civil-amber" />
+          <span className="text-xs font-mono font-medium text-slate-700 dark:text-sinc-text-secondary uppercase tracking-wider">
             Distinguished Alumni Network ({AlumniData.length})
           </span>
         </div>
-        <p className="text-xs text-slate-500 dark:text-slate-400 font-sans">
+        <p className="text-xs text-slate-500 dark:text-sinc-text-tertiary font-sans">
           Civil engineering graduates leading global infrastructure, research, and enterprise
         </p>
       </div>
