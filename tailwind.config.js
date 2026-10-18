@@ -111,7 +111,8 @@ export default {
       borderRadius: {
         "token-xs": "8px",
         "token-sm": "999px",
-        "token-md": "9999px",
+        "token-md": "12px",
+        "token-lg": "16px",
       },
       boxShadow: {
         "token-1": "rgba(30, 32, 33, 0.04) 0px 1px 2px 0px, rgba(30, 32, 33, 0.03) 0px 4px 12px 0px",

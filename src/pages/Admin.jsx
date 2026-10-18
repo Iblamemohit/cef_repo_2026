@@ -508,10 +508,10 @@ export default function AdminPage() {
               {filteredEvents.map((ev) => (
                 <div
                   key={ev.id}
-                  className="group bg-card border border-border rounded-token-md overflow-hidden shadow-sm hover:shadow-elevation-2 transition-all flex flex-col"
+                  className="group bg-card border border-border rounded-token-xs overflow-hidden shadow-sm hover:shadow-elevation-2 transition-all flex flex-col"
                 >
                   {/* Event Image with Quick Edit Button */}
-                  <div className="relative aspect-[16/9] w-full overflow-hidden bg-muted">
+                  <div className="relative h-48 w-full overflow-hidden flex-shrink-0 bg-muted">
                     <img
                       src={ev.img}
                       alt={ev.name}
@@ -930,8 +930,8 @@ export default function AdminPage() {
                       Live Preview (How it appears on /events)
                     </p>
 
-                    <div className="rounded-token-md border border-border bg-card overflow-hidden shadow-elevation-2">
-                      <div className="relative aspect-[16/9] w-full bg-muted overflow-hidden">
+                    <div className="rounded-token-xs border border-border bg-card overflow-hidden shadow-elevation-2 flex flex-col">
+                      <div className="relative h-48 w-full bg-muted overflow-hidden flex-shrink-0">
                         <img
                           src={editingEvent.img}
                           alt={editingEvent.name || "Preview"}
