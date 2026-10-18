@@ -1,55 +1,31 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 
 /**
- * Burj Khalifa 3D Structural Skeleton Animation
- * - Buttressed hexagonal concrete core with 3 wings (Y-shaped footprint)
- * - 26 spiraling setbacks stepping down wind vortex shedding
- * - Central structural steel spire reaching 828.0m
- * - Real-time progressive construction sequence with slip-form jacking
- * - 60 FPS HTML5 Canvas projection with interactive mouse/touch turntable rotation
- * - Stanford CEE color palette (Cardinal Red #8C1515, Palo Alto Green #175E54)
+ * Burj Khalifa 3D Structural Skeleton Animation (Pure View)
+ * - Y-shaped buttressed core with 26 spiraling setbacks
+ * - Steel spire reaching 828.0m pinnacle
+ * - Progressive layer-by-layer slipform climbing animation at 60 FPS
+ * - 360° interactive mouse & touch drag turntable rotation
+ * - Zero borders, transparent background, zero text clutter
  */
 
 export default function AsciiStructureCanvas() {
   const canvasRef = useRef(null);
-  const [isPaused, setIsPaused] = useState(false);
-  const [progressVal, setProgressVal] = useState(0);
-  const [elevationM, setElevationM] = useState(0);
-  const [floorNum, setFloorNum] = useState(0);
-  const [isToppedOut, setIsToppedOut] = useState(false);
 
-  // Manual rotation state refs
+  // Turntable and rotation state
   const dragRef = useRef({
     isDragging: false,
     lastX: 0,
     lastY: 0,
     rotX: 0.12, // Slight upward perspective looking at the skyscraper
-    rotY: 0.4,  // Initial isometric angle
+    rotY: 0.45, // Initial angle showing the 3 wings
   });
 
   const animStateRef = useRef({
     progress: 0,
     speed: 0.0016, // Completes construction in ~10 seconds at 60 FPS
     holdFrames: 0,
-    paused: false,
   });
-
-  useEffect(() => {
-    animStateRef.current.paused = isPaused;
-  }, [isPaused]);
-
-  // Restart construction from ground
-  const handleRestart = (e) => {
-    e.stopPropagation();
-    animStateRef.current.progress = 0;
-    animStateRef.current.holdFrames = 0;
-    setIsToppedOut(false);
-  };
-
-  const handleTogglePause = (e) => {
-    e.stopPropagation();
-    setIsPaused((p) => !p);
-  };
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -79,7 +55,7 @@ export default function AsciiStructureCanvas() {
       const tNorm = k / (TOTAL_TIERS - 1);
       const y = BASE_Y - tNorm * (BASE_Y - TOP_Y);
 
-      // Central Hexagonal Core radius tapers slowly
+      // Central Hexagonal Core radius tapers gradually
       const rCore = Math.max(3.2, 11 - k * 0.28);
       const corePoints = [];
       for (let i = 0; i < 6; i++) {
@@ -91,7 +67,7 @@ export default function AsciiStructureCanvas() {
         });
       }
 
-      // 3 Wings at 0°, 120°, 240°
+      // 3 Wings oriented at 0°, 120°, 240°
       const wings = [];
       const wingAngles = [0, (2 * Math.PI) / 3, (4 * Math.PI) / 3];
 
@@ -155,7 +131,7 @@ export default function AsciiStructureCanvas() {
         const spireRatio = (k - 22) / 5;
         const sY = TOP_Y - spireRatio * (TOP_Y - SPIRE_TIP_Y);
         const sRadius = Math.max(0.8, 4.2 * (1 - spireRatio));
-        
+
         spireRing = [];
         for (let i = 0; i < 4; i++) {
           const sAng = (i * Math.PI) / 2;
@@ -191,28 +167,18 @@ export default function AsciiStructureCanvas() {
       ctx.clearRect(0, 0, width, height);
 
       // Animation progress updates
-      if (!animStateRef.current.paused) {
-        if (animStateRef.current.progress < 1) {
-          animStateRef.current.progress = Math.min(1, animStateRef.current.progress + animStateRef.current.speed);
-        } else {
-          animStateRef.current.holdFrames++;
-          if (animStateRef.current.holdFrames > 180) { // Hold for 3s after top-out
-            animStateRef.current.progress = 0;
-            animStateRef.current.holdFrames = 0;
-          }
+      if (animStateRef.current.progress < 1) {
+        animStateRef.current.progress = Math.min(1, animStateRef.current.progress + animStateRef.current.speed);
+      } else {
+        animStateRef.current.holdFrames++;
+        if (animStateRef.current.holdFrames > 180) { // Hold for 3s after completion
+          animStateRef.current.progress = 0;
+          animStateRef.current.holdFrames = 0;
         }
       }
 
       const progress = animStateRef.current.progress;
       const isTopOut = progress >= 0.995;
-      setIsToppedOut(isTopOut);
-
-      // Update React state for HUD
-      const currElev = Math.floor(progress * 828.0);
-      const currFl = Math.floor(progress * 163);
-      setElevationM(currElev);
-      setFloorNum(currFl);
-      setProgressVal(progress);
 
       // Turntable auto-orbit when not dragging
       if (!dragRef.current.isDragging) {
@@ -227,7 +193,7 @@ export default function AsciiStructureCanvas() {
       const cosY = Math.cos(rotY);
       const sinY = Math.sin(rotY);
 
-      const fov = 380;
+      const fov = 400;
       const originX = width / 2;
       const originY = height / 2 + 25;
 
@@ -256,7 +222,7 @@ export default function AsciiStructureCanvas() {
       const raftR = 64;
       const groundY = BASE_Y + 6;
       ctx.lineWidth = 1;
-      ctx.strokeStyle = isDark ? "rgba(229, 72, 72, 0.25)" : "rgba(140, 21, 21, 0.22)";
+      ctx.strokeStyle = isDark ? "rgba(229, 72, 72, 0.22)" : "rgba(140, 21, 21, 0.18)";
 
       // Draw foundation radial anchor arms
       for (let w = 0; w < 3; w++) {
@@ -293,14 +259,14 @@ export default function AsciiStructureCanvas() {
         } else {
           // Future tiers rendered as subtle architectural blueprint wireframe
           isBlueprintGhost = true;
-          strokeAlpha = isDark ? 0.08 : 0.07;
+          strokeAlpha = isDark ? 0.08 : 0.06;
           strokeColor = isDark
             ? `rgba(255, 255, 255, ${strokeAlpha})`
             : `rgba(28, 26, 23, ${strokeAlpha})`;
         }
 
         ctx.strokeStyle = strokeColor;
-        ctx.lineWidth = isCurrentBuilding ? 1.6 : isBlueprintGhost ? 0.6 : 0.9;
+        ctx.lineWidth = isCurrentBuilding ? 1.8 : isBlueprintGhost ? 0.6 : 0.95;
 
         // Draw Central Core Hexagon
         ctx.beginPath();
@@ -356,7 +322,7 @@ export default function AsciiStructureCanvas() {
           const prevCore = prevTier.corePoints.map(project);
 
           // Hexagonal core shear wall vertical columns
-          ctx.lineWidth = isBlueprintGhost ? 0.45 : 0.85;
+          ctx.lineWidth = isBlueprintGhost ? 0.45 : 0.9;
           for (let i = 0; i < 6; i++) {
             ctx.beginPath();
             ctx.moveTo(projCore[i].x, projCore[i].y);
@@ -411,7 +377,7 @@ export default function AsciiStructureCanvas() {
           ctx.stroke();
           ctx.setLineDash([]);
 
-          // Crane Cable / Beam Placement Sparks
+          // Beam Placement Sparks
           const sparkAngle = Date.now() * 0.005;
           const sparkX = laserCenter.x + Math.cos(sparkAngle) * (laserR * 0.7);
           const sparkY = laserCenter.y + Math.sin(sparkAngle) * (laserR * 0.7);
@@ -494,7 +460,7 @@ export default function AsciiStructureCanvas() {
 
   return (
     <div
-      className="relative w-full h-full min-h-[380px] sm:min-h-[460px] flex items-center justify-center overflow-hidden border border-border bg-card rounded-2xl shadow-sm select-none"
+      className="relative w-full h-full min-h-[380px] sm:min-h-[480px] flex items-center justify-center select-none bg-transparent"
       onMouseDown={handlePointerDown}
       onMouseMove={handlePointerMove}
       onMouseUp={handlePointerUp}
@@ -503,76 +469,9 @@ export default function AsciiStructureCanvas() {
       onTouchMove={handlePointerMove}
       onTouchEnd={handlePointerUp}
       style={{ cursor: dragRef.current.isDragging ? "grabbing" : "grab" }}
+      aria-label="Burj Khalifa 3D Structural Skeleton Animation"
     >
-      <canvas ref={canvasRef} className="w-full h-full absolute inset-0" />
-
-      {/* ── Top-Left: Structural Telemetry ─────────────────────────── */}
-      <div className="absolute top-4 left-4 font-mono text-left pointer-events-none z-10">
-        <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-brand-cardinal">
-          <span className="w-2 h-2 rounded-full bg-brand-cardinal animate-ping" />
-          BURJ KHALIFA // BUTTRESSED CORE
-        </div>
-        <p className="text-[10px] text-muted tracking-wide mt-0.5">
-          26 SPIRAL SETBACKS · C80 SLIP-FORM
-        </p>
-      </div>
-
-      {/* ── Top-Right: Live Height & Floor Counter ───────────────────── */}
-      <div className="absolute top-4 right-4 font-mono text-right pointer-events-none z-10">
-        <div className="text-sm sm:text-base font-extrabold tracking-tight text-foreground">
-          +{elevationM.toFixed(1)}m{" "}
-          <span className="text-[10px] font-semibold text-muted font-mono">/ 828.0m</span>
-        </div>
-        <div className="flex items-center justify-end gap-1.5 mt-0.5">
-          <span className="text-[10px] uppercase font-semibold text-brand-paloalto">
-            {isToppedOut ? "TOPPED OUT · SPIRE LOCKED" : `FL ${floorNum.toString().padStart(3, "0")} · SLIP-FORMING`}
-          </span>
-        </div>
-      </div>
-
-      {/* ── Center Right: 3D Turntable Prompt ────────────────────────── */}
-      <div className="absolute right-4 top-1/2 -translate-y-1/2 hidden sm:flex flex-col items-center gap-1 font-mono text-[9px] uppercase tracking-widest text-muted/60 pointer-events-none">
-        <span>360°</span>
-        <span className="writing-vertical-rl">DRAG ROTATE</span>
-      </div>
-
-      {/* ── Bottom-Left: Geotechnical & Department Tag ───────────────── */}
-      <div className="absolute bottom-4 left-4 font-mono text-[10px] text-left text-muted pointer-events-none z-10">
-        <p className="font-semibold text-foreground/80">
-          25.1972° N · 55.2744° E // DUBAI
-        </p>
-        <p className="text-[9px] text-muted mt-0.5">
-          CEF IIT DELHI · TALL BUILDINGS LAB
-        </p>
-      </div>
-
-      {/* ── Bottom-Right: Interactive Controls (Rebuild & Pause) ─────── */}
-      <div className="absolute bottom-4 right-4 flex items-center gap-2 z-20">
-        <button
-          type="button"
-          onClick={handleRestart}
-          title="Restart Construction Sequence"
-          className="px-2.5 py-1 rounded-md border border-border bg-background/90 backdrop-blur-md text-foreground font-mono text-[10px] font-semibold uppercase hover:bg-brand-cardinal hover:text-white transition-colors"
-        >
-          ↺ Rebuild
-        </button>
-        <button
-          type="button"
-          onClick={handleTogglePause}
-          title={isPaused ? "Resume Animation" : "Pause Animation"}
-          className="px-2.5 py-1 rounded-md border border-border bg-background/90 backdrop-blur-md text-foreground font-mono text-[10px] font-semibold uppercase hover:bg-brand-cardinal hover:text-white transition-colors"
-        >
-          {isPaused ? "▶ Play" : "⏸ Pause"}
-        </button>
-      </div>
-
-      {/* ── Progress Track Bar at the Bottom ─────────────────────────── */}
-      <div className="absolute inset-x-0 bottom-0 h-[2.5px] bg-border/40 pointer-events-none overflow-hidden">
-        <div
-          className="h-full bg-brand-cardinal transition-all duration-75 origin-left"
-          style={{ width: `${progressVal * 100}%` }}
-        />
-      </div>
+      <canvas ref={canvasRef} className="w-full h-full block" />
     </div>
   );
 }

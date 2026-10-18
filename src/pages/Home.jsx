@@ -18,7 +18,7 @@ export default function Home() {
       <section className="relative overflow-hidden bg-background" aria-label="Hero">
         <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-px bg-border" />
         <div className="relative z-10 mx-auto max-w-[96rem] px-5 pb-12 pt-28 sm:px-8 lg:px-12 lg:pb-16 lg:pt-32 text-left">
-          <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-8 xl:gap-12">
+          <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-12 xl:gap-16">
             
             {/* Left Content */}
             <div className="relative z-10 max-w-2xl">
@@ -85,8 +85,8 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right Media: Interactive 3D Structural ASCII Canvas */}
-            <div className="relative w-full aspect-[4/3] lg:aspect-auto lg:h-[480px]">
+            {/* Right Media: Interactive 3D Structural Burj Khalifa Canvas */}
+            <div className="relative w-full aspect-[4/3] lg:aspect-auto lg:h-[520px] flex items-center justify-center">
               <AsciiStructureCanvas />
             </div>
 
