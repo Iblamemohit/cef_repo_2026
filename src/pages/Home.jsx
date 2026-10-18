@@ -98,11 +98,11 @@ export default function Home() {
       <section id="manifesto" className="relative scroll-mt-20 overflow-hidden bg-inverse text-left">
         <div className="relative mx-auto max-w-[96rem] px-5 py-16 sm:px-8 lg:px-12 lg:py-20">
           <blockquote className="relative z-10 max-w-3xl">
-            <p className="mb-5 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-teal">
+            <p className="mb-5 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-club-gold">
               10,000 engineers · 60+ years of infrastructure mastery
             </p>
-            <p className="headline-tight text-balance text-3xl leading-[1.15] text-brand-teal sm:text-5xl lg:text-[3.2rem]">
-              &ldquo;A premier campus with 10,000 engineers doesn&apos;t just calculate bending moments. It engineers the physical foundation of modern civilization — and mastery begins where theory meets real-world execution.&rdquo;
+            <p className="headline-tight text-balance text-3xl leading-[1.15] text-inverse-foreground sm:text-5xl lg:text-[3.2rem]">
+              &ldquo;A premier campus with 10,000 engineers doesn&apos;t just calculate bending moments. It engineers the <span className="text-brand-cardinal underline decoration-brand-cardinal/40 decoration-4 underline-offset-8">physical foundation</span> of modern civilization — and mastery begins where theory meets real-world execution.&rdquo;
             </p>
             <footer className="mt-8 text-base text-inverse-foreground">
               Civil Engineering Forum
@@ -189,7 +189,7 @@ export default function Home() {
               >
                 <span className="font-mono text-sm text-muted">01</span>
                 <div>
-                  <h3 className="text-xl font-semibold tracking-tight text-foreground group-hover:text-brand-blue sm:text-2xl font-display">
+                  <h3 className="text-xl font-semibold tracking-tight text-foreground group-hover:text-brand-cardinal sm:text-2xl font-display">
                     Annual Events & Dynamic Calendar
                   </h3>
                   <p className="mt-2 max-w-2xl text-base text-muted">
@@ -199,7 +199,7 @@ export default function Home() {
                     Students · Faculty · Event Attendees
                   </p>
                 </div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mt-1 h-5 w-5 shrink-0 text-muted transition-transform group-hover:translate-x-1 group-hover:text-brand-blue">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mt-1 h-5 w-5 shrink-0 text-muted transition-transform group-hover:translate-x-1 group-hover:text-brand-cardinal">
                   <path d="M5 12h14" />
                   <path d="m12 5 7 7-7 7" />
                 </svg>
@@ -213,7 +213,7 @@ export default function Home() {
               >
                 <span className="font-mono text-sm text-muted">02</span>
                 <div>
-                  <h3 className="text-xl font-semibold tracking-tight text-foreground group-hover:text-brand-blue sm:text-2xl font-display">
+                  <h3 className="text-xl font-semibold tracking-tight text-foreground group-hover:text-brand-cardinal sm:text-2xl font-display">
                     Technical Competitions & Challenges
                   </h3>
                   <p className="mt-2 max-w-2xl text-base text-muted">
@@ -223,7 +223,7 @@ export default function Home() {
                     Student Engineering Teams
                   </p>
                 </div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mt-1 h-5 w-5 shrink-0 text-muted transition-transform group-hover:translate-x-1 group-hover:text-brand-blue">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mt-1 h-5 w-5 shrink-0 text-muted transition-transform group-hover:translate-x-1 group-hover:text-brand-cardinal">
                   <path d="M5 12h14" />
                   <path d="m12 5 7 7-7 7" />
                 </svg>
@@ -237,7 +237,7 @@ export default function Home() {
               >
                 <span className="font-mono text-sm text-muted">03</span>
                 <div>
-                  <h3 className="text-xl font-semibold tracking-tight text-foreground group-hover:text-brand-blue sm:text-2xl font-display">
+                  <h3 className="text-xl font-semibold tracking-tight text-foreground group-hover:text-brand-cardinal sm:text-2xl font-display">
                     Curriculum Explorer & Study Material
                   </h3>
                   <p className="mt-2 max-w-2xl text-base text-muted">
@@ -247,7 +247,7 @@ export default function Home() {
                     Undergraduate & Postgraduate Scholars
                   </p>
                 </div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mt-1 h-5 w-5 shrink-0 text-muted transition-transform group-hover:translate-x-1 group-hover:text-brand-blue">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mt-1 h-5 w-5 shrink-0 text-muted transition-transform group-hover:translate-x-1 group-hover:text-brand-cardinal">
                   <path d="M5 12h14" />
                   <path d="m12 5 7 7-7 7" />
                 </svg>
@@ -261,7 +261,7 @@ export default function Home() {
               >
                 <span className="font-mono text-sm text-muted">04</span>
                 <div>
-                  <h3 className="text-xl font-semibold tracking-tight text-foreground group-hover:text-brand-blue sm:text-2xl font-display">
+                  <h3 className="text-xl font-semibold tracking-tight text-foreground group-hover:text-brand-cardinal sm:text-2xl font-display">
                     CEF Annual Magazine: Edition 2026–27
                   </h3>
                   <p className="mt-2 max-w-2xl text-base text-muted">
@@ -271,7 +271,7 @@ export default function Home() {
                     Readers · Researchers · Alumni
                   </p>
                 </div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mt-1 h-5 w-5 shrink-0 text-muted transition-transform group-hover:translate-x-1 group-hover:text-brand-blue">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mt-1 h-5 w-5 shrink-0 text-muted transition-transform group-hover:translate-x-1 group-hover:text-brand-cardinal">
                   <path d="M5 12h14" />
                   <path d="m12 5 7 7-7 7" />
                 </svg>
@@ -286,7 +286,7 @@ export default function Home() {
         <div className="mx-auto max-w-[96rem] px-5 py-16 sm:px-8 lg:px-12 lg:py-20">
           <p className="headline-tight max-w-3xl text-balance text-3xl leading-[1.16] text-foreground sm:text-4xl lg:text-[2.6rem]">
             Great civil engineering is not an accident. It comes from{" "}
-            <span className="text-brand-blue">laboratories full of builders</span>,
+            <span className="text-brand-cardinal font-bold">laboratories full of builders</span>,
             rigorous mathematical modeling, honest experiments, and a department community that treats every infrastructure challenge seriously.
           </p>
         </div>
@@ -313,7 +313,7 @@ export default function Home() {
 
             <Link
               to="/team"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-foreground transition-colors hover:text-brand-blue no-underline"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-foreground transition-colors hover:text-brand-cardinal no-underline"
             >
               Meet the council
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -365,7 +365,7 @@ export default function Home() {
             </div>
 
             <Link to="/events#competitions">
-              <button className="group/btn inline-flex items-center justify-center whitespace-nowrap rounded-none text-sm font-semibold transition-[transform,box-shadow,background-color,color] duration-150 ease-out brutal-shadow hover:translate-x-[2px] hover:translate-y-[2px] border-2 border-foreground text-foreground hover:bg-brand-teal hover:text-white h-11 px-6 py-2 gap-2 bg-card">
+              <button className="group/btn inline-flex items-center justify-center whitespace-nowrap rounded-none text-sm font-semibold transition-[transform,box-shadow,background-color,color] duration-150 ease-out brutal-shadow hover:translate-x-[2px] hover:translate-y-[2px] border-2 border-foreground text-foreground hover:bg-brand-cardinal hover:text-white h-11 px-6 py-2 gap-2 bg-card">
                 All Competitions
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M5 12h14" />
@@ -377,12 +377,12 @@ export default function Home() {
 
           <div className="grid gap-5 md:grid-cols-3">
             {/* Card 1 */}
-            <div className="group block h-full p-6 transition-colors border border-border bg-card rounded-xl hover:border-brand-teal/50 shadow-sm">
+            <div className="group block h-full p-6 transition-colors border border-border bg-card rounded-xl hover:border-brand-cardinal/50 shadow-sm">
               <div className="flex items-start justify-between gap-3">
                 <div className="flex h-11 w-11 items-center justify-center rounded-lg border border-border bg-foreground font-mono text-base font-bold text-background">
                   A
                 </div>
-                <span className="rounded-md border border-border bg-accent-lime/20 text-on-accent px-2 py-0.5 font-mono text-[10px] font-semibold uppercase">
+                <span className="rounded-md border border-border bg-accent-lime/15 text-brand-cardinal px-2 py-0.5 font-mono text-[10px] font-semibold uppercase">
                   Annual Conclave
                 </span>
               </div>
@@ -402,12 +402,12 @@ export default function Home() {
             </div>
 
             {/* Card 2 */}
-            <div className="group block h-full p-6 transition-colors border border-border bg-card rounded-xl hover:border-brand-teal/50 shadow-sm">
+            <div className="group block h-full p-6 transition-colors border border-border bg-card rounded-xl hover:border-brand-cardinal/50 shadow-sm">
               <div className="flex items-start justify-between gap-3">
                 <div className="flex h-11 w-11 items-center justify-center rounded-lg border border-border bg-foreground font-mono text-base font-bold text-background">
                   T
                 </div>
-                <span className="rounded-md border border-border bg-pop-peach/50 text-black px-2 py-0.5 font-mono text-[10px] font-semibold uppercase">
+                <span className="rounded-md border border-border bg-brand-palo-alto/15 text-brand-palo-alto px-2 py-0.5 font-mono text-[10px] font-semibold uppercase">
                   Build Sprint
                 </span>
               </div>
@@ -427,12 +427,12 @@ export default function Home() {
             </div>
 
             {/* Card 3 */}
-            <div className="group block h-full p-6 transition-colors border border-border bg-card rounded-xl hover:border-brand-teal/50 shadow-sm">
+            <div className="group block h-full p-6 transition-colors border border-border bg-card rounded-xl hover:border-brand-cardinal/50 shadow-sm">
               <div className="flex items-start justify-between gap-3">
                 <div className="flex h-11 w-11 items-center justify-center rounded-lg border border-border bg-foreground font-mono text-base font-bold text-background">
                   B
                 </div>
-                <span className="rounded-md border border-border bg-accent-lime/20 text-on-accent px-2 py-0.5 font-mono text-[10px] font-semibold uppercase">
+                <span className="rounded-md border border-border bg-accent-lime/15 text-brand-cardinal px-2 py-0.5 font-mono text-[10px] font-semibold uppercase">
                   Design Challenge
                 </span>
               </div>
@@ -459,7 +459,7 @@ export default function Home() {
         <div className="relative mx-auto max-w-[96rem] px-5 sm:px-8 lg:px-12">
           <p className="headline-tight max-w-4xl mx-auto text-balance text-4xl leading-[1.1] text-foreground sm:text-5xl lg:text-[3.8rem]">
             Built on campus.
-            <span className="mt-2 block text-brand-blue">Aimed at the world.</span>
+            <span className="mt-2 block text-brand-cardinal">Aimed at the world.</span>
           </p>
           <p className="mt-6 font-mono text-[11px] font-semibold uppercase tracking-[0.22em] text-muted">
             Department of Civil Engineering · Block IV · IIT Delhi

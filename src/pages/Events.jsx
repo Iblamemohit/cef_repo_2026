@@ -67,7 +67,7 @@ function RSVPButton({ event }) {
       onClick={handleRSVP}
       className={`flex items-center gap-1.5 px-3 py-1.5 rounded-token-xs border text-xs font-semibold transition-all active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sinc-text-secondary ${
         rsvped
-          ? "bg-civil-amber text-black border-civil-amber shadow-token-1"
+          ? "bg-civil-amber text-white border-civil-amber shadow-token-1"
           : "bg-slate-100 dark:bg-sinc-surface-raised border-slate-200 dark:border-sinc-border-muted text-slate-700 dark:text-sinc-text-secondary hover:border-civil-amber/50 hover:text-civil-amber"
       }`}
     >
@@ -128,7 +128,7 @@ function FilterPill({ label, active, onClick }) {
       onClick={onClick}
       className={`px-3 py-1.5 rounded-token-xs text-xs font-semibold border transition-all active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sinc-text-secondary ${
         active
-          ? "bg-civil-amber text-black border-civil-amber shadow-token-1"
+          ? "bg-civil-amber text-white border-civil-amber shadow-token-1"
           : "bg-slate-100 dark:bg-sinc-surface-base border-slate-200 dark:border-sinc-border-muted text-slate-600 dark:text-sinc-text-tertiary hover:border-civil-amber/50 hover:text-sinc-text-secondary"
       }`}
     >
@@ -221,7 +221,7 @@ export default function EventsPage() {
             <span className="text-5xl">🔍</span>
             <p className="text-lg font-semibold text-slate-700 dark:text-sinc-text-secondary">No events found</p>
             <p className="text-sm text-slate-400 dark:text-sinc-text-tertiary">Try adjusting your search or filters.</p>
-            <button onClick={() => { setSearch(""); setYearFilter("All"); setTypeFilter("All"); setStatusFilter("All"); }} className="mt-2 px-4 py-2 rounded-token-xs bg-civil-amber text-black text-sm font-semibold active:scale-95 transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sinc-text-secondary">Clear Filters</button>
+            <button onClick={() => { setSearch(""); setYearFilter("All"); setTypeFilter("All"); setStatusFilter("All"); }} className="mt-2 px-4 py-2 rounded-token-xs bg-civil-amber text-white text-sm font-semibold active:scale-95 transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sinc-text-secondary">Clear Filters</button>
           </div>
         )}
       </div>

@@ -34,9 +34,9 @@ export default function MarqueeTicker() {
             {[...TRACK_1, ...TRACK_1].map((item, idx) => (
               <span
                 key={idx}
-                className="group inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-xs font-medium uppercase tracking-wider text-foreground transition-colors hover:bg-accent-lime/10 hover:border-accent-lime/50"
+                className="group inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-xs font-medium uppercase tracking-wider text-foreground transition-colors hover:bg-brand-cardinal/10 hover:border-brand-cardinal/50"
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-brand-teal" />
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-cardinal" />
                 {item}
               </span>
             ))}
@@ -49,9 +49,9 @@ export default function MarqueeTicker() {
             {[...TRACK_2, ...TRACK_2].map((item, idx) => (
               <span
                 key={idx}
-                className="group inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-xs font-medium uppercase tracking-wider text-foreground transition-colors hover:bg-brand-blue/10 hover:border-brand-blue/50"
+                className="group inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-xs font-medium uppercase tracking-wider text-foreground transition-colors hover:bg-brand-paloalto/10 hover:border-brand-paloalto/50"
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-brand-blue" />
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-paloalto" />
                 {item}
               </span>
             ))}

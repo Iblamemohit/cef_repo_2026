@@ -161,7 +161,7 @@ export default function StudyMaterialPage() {
             href="https://rahuliitd05.github.io/Semester3/"
             target="_blank"
             rel="noreferrer"
-            className="px-3.5 py-1.5 rounded-token-xs text-xs font-semibold uppercase tracking-wider bg-civil-amber hover:bg-civil-amber-hover text-black shadow-token-1 transition-transform active:scale-95 no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sinc-text-secondary"
+            className="px-3.5 py-1.5 rounded-token-xs text-xs font-semibold uppercase tracking-wider bg-civil-amber hover:bg-civil-amber-hover text-white shadow-token-1 transition-transform active:scale-95 no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sinc-text-secondary"
           >
             Open External Portal &rarr;
           </a>

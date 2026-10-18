@@ -60,7 +60,7 @@ function Flagship() {
           <div className="pt-2 flex items-center gap-3">
             <NavLink
               to="/events#competitions"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-token-xs text-xs font-semibold uppercase tracking-wider bg-civil-amber hover:bg-civil-amber-hover text-black shadow-token-1 active:scale-95 transition-transform no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sinc-text-secondary"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-token-xs text-xs font-semibold uppercase tracking-wider bg-civil-amber hover:bg-civil-amber-hover text-white shadow-token-1 active:scale-95 transition-transform no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sinc-text-secondary"
             >
               Explore Competitions
             </NavLink>

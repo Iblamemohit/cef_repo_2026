@@ -42,10 +42,10 @@ export default function Navbar() {
 
   return (
     <>
-      {/* SInC Top Scroll Progress Indicator */}
+      {/* Top Scroll Progress Indicator */}
       <div
         aria-hidden="true"
-        className="fixed inset-x-0 top-0 z-[60] h-[3px] origin-left bg-brand-teal transition-transform duration-75"
+        className="fixed inset-x-0 top-0 z-[60] h-[3px] origin-left bg-[#8C1515] dark:bg-[#e54848] transition-transform duration-75"
         style={{ transform: `scaleX(${scrollProgress})` }}
       />
 
@@ -53,25 +53,36 @@ export default function Navbar() {
         data-site-header="true"
         className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/95 backdrop-blur-xl"
       >
-        <div className="mx-auto flex h-20 max-w-[96rem] items-center justify-between gap-6 px-4 sm:px-6 lg:px-8">
-          {/* Logo Brand with SInC Styling */}
+        {/* Stanford CEE Cardinal Top Brand Bar */}
+        <div className="bg-[#8C1515] dark:bg-[#820000] text-white py-1 px-4 sm:px-6 lg:px-8 flex items-center justify-between text-[11px] font-mono tracking-wider uppercase border-b border-[#731010]">
+          <div className="flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+            <span className="font-bold tracking-widest">CIVIL &amp; ENVIRONMENTAL ENGINEERING</span>
+          </div>
+          <span className="hidden sm:inline text-white/80 text-[10px] tracking-widest font-mono">
+            IIT DELHI // DEPT. EST. 1961
+          </span>
+        </div>
+
+        <div className="mx-auto flex h-16 max-w-[96rem] items-center justify-between gap-6 px-4 sm:px-6 lg:px-8">
+          {/* Logo Brand */}
           <NavLink
             to="/"
-            className="group flex min-w-0 items-center gap-3 no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground rounded-full"
+            className="group flex min-w-0 items-center gap-3 no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cardinal rounded-full"
             aria-label="Civil Engineering Forum IIT Delhi, home"
           >
             <img
               src={logo}
               alt=""
-              width={38}
-              height={38}
+              width={36}
+              height={36}
               className="shrink-0 rounded-lg transition-transform duration-200 group-hover:rotate-6 shadow-sm"
             />
             <span className="leading-none">
-              <span className="block font-display text-xl font-extrabold tracking-tight text-foreground">
+              <span className="block font-display text-xl font-extrabold tracking-tight text-foreground group-hover:text-brand-cardinal transition-colors">
                 CEF
               </span>
-              <span className="mt-1 block font-mono text-[9px] font-semibold uppercase tracking-[0.2em] text-muted">
+              <span className="mt-0.5 block font-mono text-[9px] font-semibold uppercase tracking-[0.2em] text-muted">
                 IIT Delhi
               </span>
             </span>
@@ -87,10 +98,10 @@ export default function Navbar() {
                 <NavLink
                   key={item.id}
                   to={to}
-                  className={`px-4 py-2 text-sm font-semibold transition-colors no-underline rounded-full ${
+                  className={`px-3.5 py-1.5 text-sm font-semibold transition-colors no-underline rounded-full ${
                     isActive
-                      ? "text-foreground font-bold"
-                      : "text-muted hover:text-foreground"
+                      ? "text-brand-cardinal font-bold bg-brand-cardinal/10 dark:bg-brand-cardinal/20"
+                      : "text-muted hover:text-brand-cardinal hover:bg-muted/5"
                   }`}
                 >
                   {item.label}
@@ -106,29 +117,29 @@ export default function Navbar() {
               type="button"
               onClick={toggleTheme}
               aria-label={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card text-foreground transition-colors hover:bg-muted/10 active:scale-95"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-foreground transition-colors hover:bg-muted/10 active:scale-95"
             >
               {isDark ? <SunIcon /> : <MoonIcon />}
             </button>
 
             {/* Pill CTA Button */}
             <a
-              className="pill-cta"
+              className="pill-cta text-xs py-2 px-5"
               href="#contact-us"
             >
-              <span className="sm:hidden">Join us</span>
-              <span className="hidden sm:inline">Join the Forum</span>
+              <span className="sm:hidden">Join</span>
+              <span className="hidden sm:inline">Join Forum</span>
             </a>
 
             {/* Mobile Navigation Toggle */}
             <button
               type="button"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card text-foreground lg:hidden active:scale-95"
+              className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-foreground lg:hidden active:scale-95"
               aria-expanded={isMenuOpen}
               aria-label="Toggle navigation"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 {isMenuOpen ? (
                   <path d="M18 6L6 18M6 6l12 12" />
                 ) : (
@@ -152,7 +163,7 @@ export default function Navbar() {
                   key={item.id}
                   to={item.isPage ? `/${item.id}` : `/#${item.id}`}
                   onClick={() => setIsMenuOpen(false)}
-                  className="px-3 py-2 text-base font-semibold text-foreground no-underline hover:text-brand-blue"
+                  className="px-3 py-2 text-base font-semibold text-foreground no-underline hover:text-brand-cardinal"
                 >
                   {item.label}
                 </NavLink>

@@ -13,7 +13,7 @@ import "./index.css";
 function App() {
   return (
     <ThemeProvider>
-      <main className="min-h-screen w-full bg-background text-foreground flex flex-col selection:bg-accent-lime selection:text-black">
+      <main className="min-h-screen w-full bg-background text-foreground flex flex-col selection:bg-brand-cardinal selection:text-white">
         <Navbar />
         <div className="flex-1">
           <Routes>

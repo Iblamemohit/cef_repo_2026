@@ -71,15 +71,19 @@ export default function AsciiStructureCanvas() {
       });
 
       // Draw Structural Members (Lines between nearby nodes)
-      ctx.lineWidth = 0.75;
+      ctx.lineWidth = 0.85;
+      const isDark = document.documentElement.classList.contains("dark");
+
       for (let i = 0; i < projected.length; i++) {
         for (let j = i + 1; j < projected.length; j++) {
           const p1 = projected[i];
           const p2 = projected[j];
           const dist = Math.hypot(p1.x - p2.x, p1.y - p2.y);
           if (dist < 46) {
-            const alpha = Math.max(0.04, 0.35 - dist / 110);
-            ctx.strokeStyle = `rgba(13, 148, 136, ${alpha})`;
+            const alpha = Math.max(0.06, 0.4 - dist / 110);
+            ctx.strokeStyle = isDark
+              ? `rgba(229, 72, 72, ${alpha})`
+              : `rgba(140, 21, 21, ${alpha})`;
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
@@ -88,24 +92,33 @@ export default function AsciiStructureCanvas() {
         }
       }
 
-      // Draw ASCII Nodes
+      // Draw ASCII Nodes with Stanford Cardinal & Palo Alto Green Accents
       ctx.font = "11px 'Geist Mono', monospace";
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
 
       projected.sort((a, b) => b.z - a.z);
 
-      projected.forEach((p) => {
-        const alpha = Math.min(1, Math.max(0.2, (p.z + 140) / 280));
-        ctx.fillStyle = `rgba(15, 23, 42, ${alpha})`;
-        if (document.documentElement.classList.contains("dark")) {
-          ctx.fillStyle = `rgba(244, 243, 238, ${alpha})`;
+      projected.forEach((p, idx) => {
+        const alpha = Math.min(1, Math.max(0.25, (p.z + 140) / 280));
+        if (idx % 3 === 0) {
+          ctx.fillStyle = isDark
+            ? `rgba(229, 72, 72, ${alpha})`
+            : `rgba(140, 21, 21, ${alpha})`;
+        } else if (idx % 3 === 1) {
+          ctx.fillStyle = isDark
+            ? `rgba(39, 153, 137, ${alpha})`
+            : `rgba(23, 94, 84, ${alpha})`;
+        } else {
+          ctx.fillStyle = isDark
+            ? `rgba(250, 248, 245, ${alpha})`
+            : `rgba(28, 26, 23, ${alpha})`;
         }
         ctx.fillText(p.char, p.x, p.y);
       });
 
       // Technical Crosshairs
-      ctx.strokeStyle = "rgba(100, 99, 94, 0.25)";
+      ctx.strokeStyle = isDark ? "rgba(229, 72, 72, 0.2)" : "rgba(140, 21, 21, 0.18)";
       ctx.beginPath();
       ctx.arc(width / 2, height / 2, 160, 0, Math.PI * 2);
       ctx.stroke();

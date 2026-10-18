@@ -181,7 +181,7 @@ export default function Competitions() {
               {c.registerUrl ? (
                 <a
                   href={c.registerUrl}
-                  className="px-3.5 py-1.5 rounded-token-xs text-xs font-semibold uppercase tracking-wider bg-civil-amber hover:bg-civil-amber-hover text-black shadow-token-1 active:scale-95 transition-transform no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sinc-text-secondary"
+                  className="px-3.5 py-1.5 rounded-token-xs text-xs font-semibold uppercase tracking-wider bg-civil-amber hover:bg-civil-amber-hover text-white shadow-token-1 active:scale-95 transition-transform no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sinc-text-secondary"
                 >
                   Register
                 </a>

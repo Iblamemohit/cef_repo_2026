@@ -113,7 +113,7 @@ function SpecialCarousel({ arrows = true, name = "Events" }) {
                   <div className="relative z-10 flex flex-col justify-end p-6 sm:p-12 w-full h-full text-left">
                     {event.month && (
                       <div className="mb-2">
-                        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-token-sm text-xs font-mono font-medium tracking-wider uppercase bg-civil-amber/20 border border-civil-amber/30 text-amber-300">
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-token-sm text-xs font-mono font-medium tracking-wider uppercase bg-civil-amber/20 border border-civil-amber/30 text-white">
                           <span className="w-1.5 h-1.5 rounded-full bg-civil-amber" />
                           {event.month}
                         </span>
