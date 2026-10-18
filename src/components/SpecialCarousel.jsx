@@ -1,10 +1,27 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { Events } from "../data/eventCarousel";
+import { Events as defaultEvents } from "../data/eventCarousel";
 import { LandingCarousel } from "../data/landingCarousel";
+import { getEvents } from "../services/eventsService";
 
 function SpecialCarousel({ arrows = true, name = "Events" }) {
   const isLanding = name === "Landing";
-  const items = isLanding ? LandingCarousel : Events;
+  const [liveEvents, setLiveEvents] = useState(defaultEvents);
+
+  useEffect(() => {
+    if (!isLanding) {
+      let active = true;
+      getEvents().then((data) => {
+        if (active && data && data.length > 0) {
+          setLiveEvents(data);
+        }
+      });
+      return () => {
+        active = false;
+      };
+    }
+  }, [isLanding]);
+
+  const items = isLanding ? LandingCarousel : liveEvents;
   const length = items.length;
 
   const [currentIndex, setCurrentIndex] = useState(0);

@@ -1,5 +1,6 @@
-import React, { useState, useMemo } from "react";
-import { Events } from "../data/eventCarousel";
+import React, { useState, useMemo, useEffect } from "react";
+import { Events as initialEvents } from "../data/eventCarousel";
+import { getEvents } from "../services/eventsService";
 import SectionHeading from "../components/SectionHeading";
 import Competitions from "../components/Competitions";
 import GuestSessions from "../components/GuestSessions";
@@ -141,27 +142,52 @@ function FilterPill({ label, active, onClick }) {
    Events Page — 3 sections: Dynamic Events → Competitions → Guest Sessions
    ═══════════════════════════════════════════════════════════════════════ */
 export default function EventsPage() {
+  const [eventsList, setEventsList] = useState(initialEvents);
+  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [yearFilter, setYearFilter] = useState("All");
   const [typeFilter, setTypeFilter] = useState("All");
   const [statusFilter, setStatusFilter] = useState("All");
 
-  const years = useMemo(() => ["All", ...Array.from(new Set(Events.map((e) => e.year))).sort()], []);
-  const types = useMemo(() => ["All", ...Array.from(new Set(Events.map((e) => e.type))).sort()], []);
+  useEffect(() => {
+    let active = true;
+    getEvents().then((data) => {
+      if (active && data && data.length > 0) {
+        setEventsList(data);
+        setLoading(false);
+      }
+    });
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const years = useMemo(
+    () => ["All", ...Array.from(new Set(eventsList.map((e) => e.year))).filter(Boolean).sort()],
+    [eventsList]
+  );
+  const types = useMemo(
+    () => ["All", ...Array.from(new Set(eventsList.map((e) => e.type))).filter(Boolean).sort()],
+    [eventsList]
+  );
 
   const filtered = useMemo(() => {
-    return Events.filter((e) => {
+    return eventsList.filter((e) => {
       const q = search.toLowerCase();
-      const matchSearch = !q || e.name.toLowerCase().includes(q) || e.desc.toLowerCase().includes(q) || e.type.toLowerCase().includes(q);
+      const matchSearch =
+        !q ||
+        (e.name && e.name.toLowerCase().includes(q)) ||
+        (e.desc && e.desc.toLowerCase().includes(q)) ||
+        (e.type && e.type.toLowerCase().includes(q));
       const matchYear = yearFilter === "All" || e.year === yearFilter;
       const matchType = typeFilter === "All" || e.type === typeFilter;
-      const matchStatus = statusFilter === "All" || e.status === statusFilter.toLowerCase();
+      const matchStatus = statusFilter === "All" || (e.status && e.status.toLowerCase() === statusFilter.toLowerCase());
       return matchSearch && matchYear && matchType && matchStatus;
     });
-  }, [search, yearFilter, typeFilter, statusFilter]);
+  }, [eventsList, search, yearFilter, typeFilter, statusFilter]);
 
-  const upcomingCount = Events.filter((e) => e.status === "upcoming").length;
-  const pastCount = Events.filter((e) => e.status === "past").length;
+  const upcomingCount = eventsList.filter((e) => e.status === "upcoming").length;
+  const pastCount = eventsList.filter((e) => e.status === "past").length;
 
   return (
     <div className="pt-24 pb-20 min-h-screen bg-background text-foreground">
@@ -172,7 +198,7 @@ export default function EventsPage() {
 
         <div className="mt-6 mb-10 flex flex-wrap gap-4">
           {[
-            { label: "Total Events", value: Events.length },
+            { label: "Total Events", value: eventsList.length },
             { label: "Upcoming", value: upcomingCount, highlight: true },
             { label: "Past Events", value: pastCount },
           ].map(({ label, value, highlight }) => (

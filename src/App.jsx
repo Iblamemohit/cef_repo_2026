@@ -7,6 +7,7 @@ import EventsPage from "./pages/Events";
 import TeamPage from "./pages/Team";
 import MagazinePage from "./pages/Magazine";
 import StudyMaterialPage from "./pages/StudyMaterial";
+import AdminPage from "./pages/Admin";
 import { ThemeProvider } from "./theme";
 import "./index.css";
 
@@ -22,6 +23,7 @@ function App() {
             <Route path="/team" element={<TeamPage />} />
             <Route path="/magazine" element={<MagazinePage />} />
             <Route path="/study-material" element={<StudyMaterialPage />} />
+            <Route path="/admin" element={<AdminPage />} />
             {/* Fallback to Home */}
             <Route path="*" element={<Home />} />
           </Routes>
