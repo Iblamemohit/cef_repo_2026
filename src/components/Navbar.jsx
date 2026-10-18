@@ -32,14 +32,10 @@ export default function Navbar() {
   const { isDark, toggleTheme } = useTheme();
   const menuItems = [
     { label: "About", id: "about" },
-    { label: "Team", id: "team" },
-    { label: "Events", id: "events" },
-    { label: "Competitions", id: "competitions", isPage: true },
-    { label: "Guest Sessions", id: "guest-sessions", isPage: true },
+    { label: "Events", id: "events", isPage: true },
+    { label: "Team", id: "team", isPage: true },
     { label: "Magazine", id: "magazine", isPage: true },
     { label: "Study Material", id: "study-material", isPage: true },
-    { label: "Alumni", id: "alumni" },
-    { label: "Contact", id: "contact-us" },
   ];
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
