@@ -81,7 +81,13 @@ const CloseIcon = () => (
 
 export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
-    return sessionStorage.getItem(AUTH_KEY) === "true";
+    try {
+      return typeof window !== "undefined" && typeof sessionStorage !== "undefined"
+        ? sessionStorage.getItem(AUTH_KEY) === "true"
+        : false;
+    } catch {
+      return false;
+    }
   });
   const [passcode, setPasscode] = useState("");
   const [authError, setAuthError] = useState("");

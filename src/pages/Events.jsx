@@ -235,7 +235,7 @@ export default function EventsPage() {
         </div>
 
         <p className="text-xs text-slate-400 dark:text-sinc-text-tertiary font-mono mb-6">
-          Showing <span className="text-civil-amber font-semibold">{filtered.length}</span> of {Events.length} events
+          Showing <span className="text-civil-amber font-semibold">{filtered.length}</span> of {eventsList.length} events
         </p>
 
         {filtered.length > 0 ? (
