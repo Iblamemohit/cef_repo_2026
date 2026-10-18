@@ -8,21 +8,45 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Geist", "Geist Fallback", "Inter", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "sans-serif"],
-        mono: ["Geist Mono", "JetBrains Mono", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "monospace"],
-      },
-      fontSize: {
-        "xs": ["10px", { lineHeight: "14px" }],
-        "sm": ["11px", { lineHeight: "16px" }],
-        "md": ["12px", { lineHeight: "18px" }],
-        "lg": ["14px", { lineHeight: "20px" }],
-        "xl": ["16px", { lineHeight: "24.8px" }],
-        "2xl": ["18px", { lineHeight: "26px" }],
-        "3xl": ["20px", { lineHeight: "28px" }],
-        "4xl": ["24px", { lineHeight: "32px" }],
+        sans: ["Geist", "Geist Fallback", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "sans-serif"],
+        display: ["Bricolage Grotesque", "Geist", "sans-serif"],
+        mono: ["Geist Mono", "JetBrains Mono", "SFMono-Regular", "Menlo", "monospace"],
       },
       colors: {
-        // SInC Design Tokens
+        background: "var(--background)",
+        foreground: "var(--foreground)",
+        card: {
+          DEFAULT: "var(--card)",
+          foreground: "var(--card-foreground)",
+        },
+        muted: {
+          DEFAULT: "var(--muted)",
+          foreground: "var(--muted-foreground)",
+        },
+        border: {
+          DEFAULT: "var(--border)",
+          ink: "var(--border-ink)",
+        },
+        brand: {
+          teal: "var(--brand-teal)",
+          blue: "var(--brand-blue)",
+        },
+        accent: {
+          lime: "var(--accent-lime)",
+          "lime-dark": "#b8da24",
+          tint: "var(--accent-tint)",
+        },
+        "on-accent": "var(--on-accent)",
+        inverse: {
+          DEFAULT: "var(--inverse)",
+          foreground: "var(--inverse-foreground)",
+          muted: "var(--inverse-muted)",
+        },
+        pop: {
+          peach: "#fed7aa",
+        },
+        "club-gold": "var(--club-gold)",
+        // SInC Design Tokens from design.md
         sinc: {
           text: {
             primary: "#cecac3",
@@ -47,26 +71,21 @@ export default {
             subtle: "rgba(245, 158, 11, 0.12)",
             border: "rgba(245, 158, 11, 0.25)",
           },
-          blueprint: {
-            DEFAULT: "#0284C7",
-            hover: "#0369A1",
-            subtle: "rgba(2, 132, 199, 0.12)",
-          },
           dark: {
-            canvas: "#000000", // token: color.surface.base
-            surface: "#181a1b", // token: color.surface.strong
-            surface2: "#252315", // token: color.surface.raised
-            surface3: "#25210f", // token: color.surface.muted
-            hairline: "#3a3f42", // token: color.border.muted
-            hairlineStrong: "rgba(206, 202, 195, 0.25)",
+            canvas: "var(--background)",
+            surface: "var(--card)",
+            surface2: "var(--card)",
+            surface3: "var(--card)",
+            hairline: "var(--border)",
+            hairlineStrong: "var(--border-ink)",
           },
           light: {
-            canvas: "#F8FAFC",
-            surface: "#FFFFFF",
-            surface2: "#F1F5F9",
-            surface3: "#E2E8F0",
-            hairline: "rgba(58, 63, 66, 0.15)",
-            hairlineStrong: "rgba(58, 63, 66, 0.25)",
+            canvas: "var(--background)",
+            surface: "var(--card)",
+            surface2: "var(--card)",
+            surface3: "var(--card)",
+            hairline: "var(--border)",
+            hairlineStrong: "var(--border-ink)",
           },
         },
       },
@@ -79,15 +98,22 @@ export default {
         "token-1": "rgba(30, 32, 33, 0.04) 0px 1px 2px 0px, rgba(30, 32, 33, 0.03) 0px 4px 12px 0px",
         "token-2": "rgba(26, 44, 74, 0.1) 3px 3px 0px 0px",
         "token-3": "rgb(26, 44, 74) 0px 0px 0px 1px inset",
-        "hairline": "0 0 0 1px #3a3f42",
-        "hairline-light": "0 0 0 1px rgba(58, 63, 66, 0.15)",
-        "glow-amber": "0 0 20px -5px rgba(245, 158, 11, 0.3)",
-        "elevation-dark": "0 10px 30px -10px rgba(0, 0, 0, 0.8), 0 0 0 1px #3a3f42",
-        "elevation-light": "0 10px 30px -10px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(58, 63, 66, 0.12)",
+        "elevation-dark": "0 10px 30px -10px rgba(0, 0, 0, 0.8), 0 0 0 1px var(--border)",
+        "elevation-light": "0 10px 30px -10px rgba(0, 0, 0, 0.04), 0 0 0 1px var(--border)",
       },
-      transitionDuration: {
-        instant: "150ms",
-        fast: "200ms",
+      keyframes: {
+        marquee: {
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
+        "marquee-reverse": {
+          "0%": { transform: "translateX(-50%)" },
+          "100%": { transform: "translateX(0%)" },
+        },
+      },
+      animation: {
+        marquee: "marquee 35s linear infinite",
+        "marquee-reverse": "marquee-reverse 40s linear infinite",
       },
     },
   },

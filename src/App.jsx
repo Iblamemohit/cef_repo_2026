@@ -1,6 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import EventsPage from "./pages/Events";
 import TeamPage from "./pages/Team";
@@ -12,17 +13,20 @@ import "./index.css";
 function App() {
   return (
     <ThemeProvider>
-      <main className="min-h-screen w-full text-slate-900 dark:text-slate-100 selection:bg-civil-amber selection:text-black">
+      <main className="min-h-screen w-full bg-background text-foreground flex flex-col selection:bg-accent-lime selection:text-black">
         <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/events" element={<EventsPage />} />
-          <Route path="/team" element={<TeamPage />} />
-          <Route path="/magazine" element={<MagazinePage />} />
-          <Route path="/study-material" element={<StudyMaterialPage />} />
-          {/* Fallback to Home */}
-          <Route path="*" element={<Home />} />
-        </Routes>
+        <div className="flex-1">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/events" element={<EventsPage />} />
+            <Route path="/team" element={<TeamPage />} />
+            <Route path="/magazine" element={<MagazinePage />} />
+            <Route path="/study-material" element={<StudyMaterialPage />} />
+            {/* Fallback to Home */}
+            <Route path="*" element={<Home />} />
+          </Routes>
+        </div>
+        <Footer />
       </main>
     </ThemeProvider>
   );

@@ -164,7 +164,7 @@ export default function EventsPage() {
   const pastCount = Events.filter((e) => e.status === "past").length;
 
   return (
-    <div className="pt-20 min-h-screen bg-civil-light-canvas dark:bg-black">
+    <div className="pt-24 pb-20 min-h-screen bg-background text-foreground">
 
       {/* ── Section 1: Dynamic Events & Annual Calendar ────────────── */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
